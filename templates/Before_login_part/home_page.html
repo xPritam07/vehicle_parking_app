@@ -4,24 +4,36 @@
 {% endblock %}
 
 {% block content %}
+<div class="page-wrapper">
     <header>
-        <div class="navbar nav-container">
-            <div class="navbar nav-company">
-                <div class="nav nav-logo"><i class="fa-solid fa-location-pin"></i></div>
-                <div class="nav nav-name">Parkou</div>
-            </div>
-            <div class="nav nav-options">
-                <div class="options">
-                    <div class="optn-gen">About</div>
-                    <div class="optn-gen">Pricing</div>
-                    <div class="optn-gen">Contact</div>
+        <nav class="navbar navbar-expand-lg navbar-dark px-3">
+        <!-- Parent container inside nav -->
+            <div class="container-fluid d-flex align-items-center justify-content-between">
+
+                <!-- Brand (left side) -->
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <div class="navbar-logo">
+                        <i class="fa-solid fa-location-dot me-2"></i>Parkou
+                    </div>
+                </a>
+            
+                <!-- Toggler button for small screens -->
+                <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <!-- Collapsible nav content -->
+                <div class="collapse navbar-collapse" id="navOptions">
+                    <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
+                        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+                    </ul>
                 </div>
-                <div class="options">
-                    <div class="optn-log">Login</div>
-                    <div class="optn-log">Sign Up</div>
-                </div>
             </div>
-        </div>
+        </nav>
     </header>
     <main>
         <div class="container">
@@ -35,7 +47,9 @@
             </div>
             <div class="img-style">
                 <img src="/static/images/homepage_main_image.png" alt="">
+                <img src="/static/images/unnamed.png" alt="">
             </div>
         </div>
     </main>
+</div>
 {% endblock %}
