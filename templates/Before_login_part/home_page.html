@@ -13,7 +13,7 @@
                 <!-- Brand (left side) -->
                 <a class="navbar-brand d-flex align-items-center" href="#">
                     <div class="navbar-logo">
-                        Parkou
+                        ParkoU
                         <i class="fa-solid fa-location-dot me-2"></i>
                     </div>
                 </a>
@@ -129,7 +129,7 @@
             <div class="service-card-container">
                 <div class="service-card">
                     <div class="service-card-img">
-                        <img src="/static/images/parking-open-space.jpg" alt="">
+                        <img src="/static/images/parking-open-space.jpg" alt="" class="service_card_img">
                     </div>
                     <div class="service-card-descp">
                         <p>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-card-container">
-                        <img src="/static/images/pcs1.png" alt="">
+                        <img src="/static/images/pcs1.png" alt="" class="service_card_img">
                     </div>
                     <div class="service-card-descp">
                         <p>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-card-container">
-                        <img src="/static/images/parking-closed-door.png" alt="">
+                        <img src="/static/images/parking-closed-door.png" alt="" class="service_card_img">
                     </div>
                     <div class="service-card-descp">
                         <p>
@@ -159,7 +159,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-card-container">
-                        <img src="/static/images/cctv-camera-car-parking.png" alt="">
+                        <img src="/static/images/cctv-camera-car-parking.png" alt="" class="service_card_img">
                     </div>
                     <div class="service-card-descp">
                         <p>
@@ -169,22 +169,115 @@
                 </div>
                 <div class="service-card">
                     <div class="service-card-container">
-                        <img src="/static/images/multilevel_parking.png" alt="">
+                        <img src="/static/images/multilevel_parking.png" alt="" class="service_card_img">
                     </div>
                     <div class="service-card-descp">
-                        90+ Multilevel Parking Access
+                        <p>
+                            90+ Multilevel Parking Access
+                        </p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-container">
-                        <img src="/static/images/reserved_parking.jpeg" alt="">
+                        <img src="/static/images/reserved_parking.jpeg" alt="" class="service_card_img">
                     </div>
                     <div class="service-card-descp">
-                        Reserved Parking Facility
+                        <p>
+                            Reserved Parking Facility
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="contact-container">
+            <div class="contact-heading">
+                <h3>HAVE A DOUBT</h3>
+                <div class="contact-heading-tagline">
+                    We are available 24 x 7. Feel free to reach us . . .
+                </div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-img">
+                    <img src="/static/images/contact_space.png" alt="">
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="question">Ask your question</label>
+                    <textarea id="question" name="question" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send</button>
+                </form>
+            </div>
+        </div>
     </main>
 </div>
+<footer>
+    <div class="container-footer">
+        <div class="footer-top-container">
+            <div class="footer-card">
+                <div class="footer-address">
+                    <h3>ParKoU</h3>
+                    <p>
+                        33 Pal Sakti street <br>
+                        Chennai, TN 603203 
+                        <br>
+                        <br>
+                        Phone: +91 XXXX XXXX XX <br> 
+                        Email: 23f3004460@gmail.com
+                    </p>
+                </div>
+            </div>
+            <div class="footer-card">
+                <div class="footer-card-childs">
+                    <p class="footer-top-heading">Usefull Links</p>
+                    <ul class="footer-top-list">
+                        <li>Home</li>
+                        <li>About Us</li>
+                        <li>Services</li>
+                        <li>Pricing</li>
+                        <li>Privacy Policy</li>
+                    </ul>
+                </div>
+                <div class="footer-card-childs">
+                    <p class="footer-top-heading">Our Services</p>
+                    <ul class="footer-top-list">
+                        <li>Quick Parking</li>
+                        <li>Closed Roof Parking</li>
+                        <li>CCTV Coverage</li>
+                        <li>Pre-Reserve Facility</li>
+                        <li>Security</li>
+                    </ul>
+                </div>
+                <div class="footer-card-childs">
+                    <p class="footer-top-heading">Information</p>
+                    <ul class="footer-top-list">
+                        <li>Terms of service</li>
+                        <li>Affiliate programs</li>
+                        <li>Careers</li>
+                        <li>Report issue</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-container">
+            <div class="bottom-footer-card">
+                <p>@ Copyright <strong>ParkoU</strong>. All Rights Reserved
+                <br>
+                Designed by Pritam
+                </p>
+            </div>
+            <div class="bottom-footer-card">
+                <a href="#" class="media-links"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="media-links"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="media-links"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="media-links"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
 {% endblock %}
