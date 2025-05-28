@@ -5,7 +5,7 @@
 }
 
 .page-wrapper {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -18,7 +18,7 @@
 
 body{
     height: 156rem;
-    background: linear-gradient(135deg, #fff, #05770b);;
+    background: linear-gradient(125deg, #ffffff73, #26992c);;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -39,7 +39,7 @@ body{
 .custom-homepage-buttons {
     font-size: 1rem;
     color: green;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .custom-homepage-buttons:hover{
@@ -125,3 +125,67 @@ main{
 .cycling-list:hover li {
     animation-play-state: paused;
 } */
+
+.heading-pricing h3{
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.tagline-pricing {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.container-pricing{
+    background: linear-gradient(to right, #1b5e20, #2dd62a);
+    color: #ffffffb7;
+    margin-top: 15rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards-pricing{
+    width: 80vw;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.cards{
+    background: linear-gradient(315deg, #ffffff85, #ffffff);
+    color: #1b5e20;
+    height: 30rem;
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 3rem;
+    box-shadow: 5px 5px 10px rgb(17, 46, 3);
+    transition: background-color 0.3s ease
+}
+
+.cards:hover{
+    background-color: #fff;
+    transform: scale(1.02);
+}
+
+.price-container {
+    display: flex;
+    gap: 0.2rem;
+    justify-content: center;
+    align-items: first baseline;
+}
+
+.price-value {
+    font-size: 2.2rem;
+    font-weight: 580;
+}
