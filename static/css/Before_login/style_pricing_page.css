@@ -1,0 +1,188 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+}
+
+.page-wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+    .page-wrapper {
+    width: 100%;
+}
+}
+
+body{
+    height: 55rem;
+    background: linear-gradient(to right, #ffffff73, #20d329);;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #1b5e20;
+}
+
+.highlight-title {
+    color: #1C651B;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.highlight-title:hover {
+    text-shadow: 5px 5px 8px rgba(0, 100, 0, 0.5);
+    transform: scale(1.02);
+}
+
+.custom-homepage-buttons {
+    font-size: 1rem;
+    color: green;
+    font-weight: 600;
+}
+
+.custom-homepage-buttons:hover{
+    color: #fff;
+    text-decoration: underline;
+    text-shadow: 2px 2px 8px rgb(25, 83, 10);
+    transform: scale(1.1);
+}
+
+.toggler-shadow{
+    background-color: #1C651B;
+}
+
+.toggler-shadow:hover{
+    box-shadow: 5px 5px 10px rgba(11, 49, 11, 0.6);
+}
+
+.heading-pricing h3{
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #1b5e20;
+}
+
+.tagline-pricing {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1b5e20;
+}
+
+.container-pricing{
+    /* background: linear-gradient(to right, #25812b, #32ee2f); */
+    color: #ffffffb7;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 5px 5px 10px #1d6821; */
+}
+
+.cards-pricing{
+    width: 80vw;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.cards{
+    background: linear-gradient(315deg, #ffffff41, #ffffffd8);
+    color: #1b5e20;
+    height: 30rem;
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 3rem;
+    box-shadow: 5px 5px 10px rgb(17, 46, 3);
+    transition: background-color 0.3s ease;
+    transition: color 0.3s ease; 
+}
+
+.cards:hover{
+    background-color: #fff;
+    color: black;
+    transform: scale(1.02);
+}
+
+.price-container {
+    display: flex;
+    gap: 0.2rem;
+    justify-content: center;
+    align-items: first baseline;
+}
+
+.price-value {
+    font-size: 2.2rem;
+    font-weight: 580;
+}
+
+
+footer {
+    margin-top: 5rem;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.footer-top-container {
+    height: 16rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    color: #ccc;
+    background-color: #0a0b18;
+}
+
+.footer-card{
+    margin-top: 2rem;
+    width: 40rem;
+    height: 12rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+}
+
+.footer-card-childs {
+    width: 10rem;
+}
+
+.footer-bottom-container {
+    height: 8rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #ccc;
+    background-color: rgb(18, 18, 19);
+}
+
+.footer-top-list li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-top-list li {
+    margin-bottom: 0.5rem;
+    white-space: nowrap; /* prevents line breaks */
+}
+
+.footer-top-heading {
+    font-weight: 560;
+    text-decoration: underline;
+    white-space: nowrap;
+    text-align: center;
+}
