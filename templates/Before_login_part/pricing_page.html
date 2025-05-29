@@ -9,106 +9,106 @@
 {% endblock %}
 
 {% block content %}
-<div class="page-wrapper">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark px-3">
-        <!-- Parent container inside nav -->
-            <div class="container-fluid d-flex align-items-center justify-content-between">
+<header>
+    <div class="page-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-dark px-3">
+    <!-- Parent container inside nav -->
+        <div class="container-fluid d-flex align-items-center justify-content-between">
 
-                <!-- Brand (left side) -->
-                <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home_page') }}">
-                    <div class="navbar-logo">
-                        ParkoU
-                        <i class="fa-solid fa-location-dot me-2"></i>
-                    </div>
-                </a>
-            
-                <!-- Toggler button for small screens -->
-                <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-            
-                <!-- Collapsible nav content -->
-                <div class="collapse navbar-collapse" id="navOptions">
-                    <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
-                        <li class="nav-item"><a href="{{ url_for('home_page') }}" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                        <li class="nav-item"><a href="{{ url_for('contact_page') }}" class="nav-link">Contact</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+            <!-- Brand (left side) -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home_page') }}">
+                <div class="navbar-logo">
+                    ParkoU
+                    <i class="fa-solid fa-location-dot me-2"></i>
+                </div>
+            </a>
+        
+            <!-- Toggler button for small screens -->
+            <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <!-- Collapsible nav content -->
+            <div class="collapse navbar-collapse" id="navOptions">
+                <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
+                    <li class="nav-item"><a href="{{ url_for('home_page') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{{ url_for('contact_page') }}" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <hr>
+</div>
+</header>
+<main>
+    <div class="container-pricing">
+        <div class="heading-pricing">
+            <h3>Pricing</h3>
+            <div class="tagline-pricing">
+                <p>Park with complete confidence. Our 7-day money back guarentee means it's risk free . . .</p>
+            </div>
+        </div>
+        <div class="cards-pricing">
+            <div class="cards">
+                <h3>Park Lite</h3>
+                <div class="card-descp">
+                    <ul>
+                        <li>24 x 7 Security</li>
+                        <li>Closed space parking</li>
+                        <li>CCTV facility</li>
+                        <li>Slot reserve</li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <hr>
-    <main>
-        <div class="container-pricing">
-            <div class="heading-pricing">
-                <h3>Pricing</h3>
-                <div class="tagline-pricing">
-                    <p>Park with complete confidence. Our 7-day money back guarentee means it's risk free . . .</p>
+                <div class="price-container">
+                    <div class="rupee-sign"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div class="price-value">60.00</div>
+                    <div class="price-duration">/h</div>
                 </div>
             </div>
-            <div class="cards-pricing">
-                <div class="cards">
-                    <h3>Park Lite</h3>
-                    <div class="card-descp">
-                        <ul>
-                            <li>24 x 7 Security</li>
-                            <li>Closed space parking</li>
-                            <li>CCTV facility</li>
-                            <li>Slot reserve</li>
-                        </ul>
-                    </div>
-                    <div class="price-container">
-                        <div class="rupee-sign"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-                        <div class="price-value">60.00</div>
-                        <div class="price-duration">/h</div>
-                    </div>
+            <div class="cards">
+                <h3>Park Smart</h3>
+                <div class="card-descp">
+                    <ul>
+                        <li>24 x 7 Security</li>
+                        <li>Closed space parking</li>
+                        <li>CCTV facility</li>
+                        <li>Slot reserve</li>
+                    </ul>
                 </div>
-                <div class="cards">
-                    <h3>Park Smart</h3>
-                    <div class="card-descp">
-                        <ul>
-                            <li>24 x 7 Security</li>
-                            <li>Closed space parking</li>
-                            <li>CCTV facility</li>
-                            <li>Slot reserve</li>
-                        </ul>
-                    </div>
-                    <div class="price-container">
-                        <div class="rupee-sign"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-                        <div class="price-value">90.00</div>
-                        <div class="price-duration">/h</div>
-                    </div>
+                <div class="price-container">
+                    <div class="rupee-sign"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div class="price-value">90.00</div>
+                    <div class="price-duration">/h</div>
                 </div>
-                <div class="cards">
-                    <h3>Park Pro</h3>
-                    <div class="card-descp">
-                        <ul>
-                            <li>24 x 7 Security</li>
-                            <li>Closed space parking</li>
-                            <li>CCTV facility</li>
-                            <li>Slot reserve</li>
-                        </ul>
-                    </div>
-                    <div class="price-container">
-                        <div class="rupee-sign"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-                        <div class="price-value">150.00</div>
-                        <div class="price-duration">/h</div>
-                    </div>
+            </div>
+            <div class="cards">
+                <h3>Park Pro</h3>
+                <div class="card-descp">
+                    <ul>
+                        <li>24 x 7 Security</li>
+                        <li>Closed space parking</li>
+                        <li>CCTV facility</li>
+                        <li>Slot reserve</li>
+                    </ul>
                 </div>
-            </div>         
-        </div>
-    </main>
-</div>
+                <div class="price-container">
+                    <div class="rupee-sign"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div class="price-value">150.00</div>
+                    <div class="price-duration">/h</div>
+                </div>
+            </div>
+        </div>         
+    </div>
+</main>
 <footer>
     <div class="container-footer">
         <div class="footer-top-container">
             <div class="footer-card">
                 <div class="footer-address">
-                    <h3>ParKoU</h3>
+                    <h3>ParkoU</h3>
                     <p>
                         33 Pal Sakti street <br>
                         Chennai, TN 603203 

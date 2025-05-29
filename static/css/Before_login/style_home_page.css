@@ -18,7 +18,7 @@
 
 body{
     height: 218rem;
-    background: linear-gradient(to right, #ffffff73, #20d329);;
+    background-color: rgb(189, 235, 189);
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -60,11 +60,10 @@ body{
 }
 
 .container {
-    
+    margin-bottom: 15rem;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
 }
 
 .img-container {
@@ -142,15 +141,22 @@ main{
 }
 
 .container-pricing{
-    background: linear-gradient(to right, #25812b, #32ee2f);
+    background: linear-gradient(to right, #25812b, #49fa46);
     color: #ffffffb7;
-    margin-top: 15rem;
+    margin: auto;
     padding: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-shadow: 5px 5px 10px #1d6821;
+    width: 90%;
+}
+
+@media (max-width: 992px) {
+    .container-pricing {
+    width: 100%;
+}
 }
 
 .cards-pricing{
@@ -164,7 +170,7 @@ main{
 }
 
 .cards{
-    background: linear-gradient(315deg, #ffffff85, #ffffff);
+    background: linear-gradient(315deg, #ffffffcb, #ffffff);
     color: #1b5e20;
     height: 30rem;
     width: 18rem;
@@ -247,7 +253,7 @@ main{
     border-radius: 2rem;
     height: 20rem;
     width: 10rem;
-    background: linear-gradient(45deg, #ffffff3f, #ffffffc9);
+    background: linear-gradient(45deg, #ffffff21, #ffffff8f);
     transition: background-color 0.3s ease;
     box-shadow: 5px 5px 10px #258329;
 }
@@ -274,7 +280,7 @@ main{
 
 .service-card:hover {
     transform: scale(1.05);
-    background-color: #ffffff88;
+    background-color: #fff;
     color: black;
 }
 
@@ -364,7 +370,6 @@ footer {
 }
 
 .footer-top-container {
-    height: 16rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -376,7 +381,6 @@ footer {
 .footer-card{
     margin-top: 2rem;
     width: 40rem;
-    height: 12rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -389,7 +393,6 @@ footer {
 }
 
 .footer-bottom-container {
-    height: 8rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;

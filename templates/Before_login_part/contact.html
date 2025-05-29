@@ -8,87 +8,93 @@
 {% endblock %}
 
 {% block content %}
-<div class="page-wrapper">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark px-3">
-        <!-- Parent container inside nav -->
-            <div class="container-fluid d-flex align-items-center justify-content-between">
+<header>
+    <div class="page-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-dark px-3">
+    <!-- Parent container inside nav -->
+        <div class="container-fluid d-flex align-items-center justify-content-between">
 
-                <!-- Brand (left side) -->
-                <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home_page') }}">
-                    <div class="navbar-logo">
-                        ParkoU
-                        <i class="fa-solid fa-location-dot me-2"></i>
-                    </div>
-                </a>
-            
-                <!-- Toggler button for small screens -->
-                <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-            
-                <!-- Collapsible nav content -->
-                <div class="collapse navbar-collapse" id="navOptions">
-                    <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
-                        <li class="nav-item"><a href="{{ url_for('home_page') }}" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="{{ url_for('pricing') }}" class="nav-link">Pricing</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
-                    </ul>
+            <!-- Brand (left side) -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home_page') }}">
+                <div class="navbar-logo">
+                    ParkoU
+                    <i class="fa-solid fa-location-dot me-2"></i>
                 </div>
+            </a>
+        
+            <!-- Toggler button for small screens -->
+            <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <!-- Collapsible nav content -->
+            <div class="collapse navbar-collapse" id="navOptions">
+                <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
+                    <li class="nav-item"><a href="{{ url_for('home_page') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{{ url_for('pricing') }}" class="nav-link">Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
     <hr>
-    <main>
-        <div class="contact-container">
-            <div class="contact-content">
-                <div class="content-heading">
-                    <h3>Contact Us</h3>
+    </div>
+</header>
+<main>
+    <div class="contact-container">
+        <div class="contact-content">
+            <div class="content-heading">
+                <h3>Contact Us</h3>
+            </div>
+            <div class="content-body">
+                Do you have a doubt about our services? Feel free to use the form or drop us an email. We answer your calls 24 x 7.
+            </div>
+            <div class="contact-credentials">
+                <div class="credential">
+                    <i class="fa-solid fa-phone credential-sign"></i>
+                    <p class="credential-content">+91 7364 8836 62</p>
                 </div>
-                <div class="content-body">
-                    Do you have a doubt about our services? Feel free to use the form or drop us an email. We answer your calls 24 x 7.
+                <div class="credential">
+                    <i class="fa-solid fa-envelope credential-sign"></i>
+                    <p class="credential-content">23f3004460@gmail.com</p>
                 </div>
-                <div class="contact-credentials">
-                    <div class="credential">
-                        <i class="fa-solid fa-phone"></i>
-                        +91 7364 8836 62
-                    </div>
-                    <div class="credential">
-                        <i class="fa-solid fa-envelope"></i>
-                        23f3004460@gmail.com
-                    </div>
-                    <div class="credential">
-                        <i class="fa-solid fa-location-dot"></i>
+                <div class="credential">
+                    <i class="fa-solid fa-location-dot credential-sign"></i>
+                    <p class="credential-content">
                         33 Pal Sakti Street
                         <br>
                         Chennai, TN 603203
-                    </div>
+                    </p>
                 </div>
             </div>
-            <div class="contactForm">
-                <form class="contact-form">
-                    <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                    </div>
-                    <div class="form-group">
-                    <label for="question">Ask your question</label>
-                    <textarea id="question" name="question" placeholder="Type your message here..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send</button>
-                </form>
-            </div>
         </div>
-    </main>
-</div>
+        <div class="contactForm">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="tetx" id="name" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                <label for="question">Ask your question</label>
+                <textarea id="question" name="question" placeholder="Type your message here..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send</button>
+            </form>
+        </div>
+    </div>
+</main>
 <footer>
     <div class="container-footer">
         <div class="footer-top-container">
             <div class="footer-card">
                 <div class="footer-address">
-                    <h3>ParKoU</h3>
+                    <h3>ParkoU</h3>
                     <p>
                         33 Pal Sakti street <br>
                         Chennai, TN 603203 
