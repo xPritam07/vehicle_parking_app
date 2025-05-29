@@ -43,8 +43,10 @@ body{
 }
 
 .custom-homepage-buttons:hover{
-    color: #fff;
+    color: #fff !important;
     text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
     text-shadow: 2px 2px 8px rgb(25, 83, 10);
     transform: scale(1.1);
 }
@@ -245,7 +247,7 @@ main{
     border-radius: 2rem;
     height: 20rem;
     width: 10rem;
-    background: linear-gradient(315deg, #ffffff3f, #ffffffc9);
+    background: linear-gradient(45deg, #ffffff3f, #ffffffc9);
     transition: background-color 0.3s ease;
     box-shadow: 5px 5px 10px #258329;
 }

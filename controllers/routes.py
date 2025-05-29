@@ -9,3 +9,7 @@ def home_page():
 @app.route('/pricing')
 def pricing():
     return render_template("/Before_login_part/pricing_page.html")
+
+@app.route('/contact')
+def contact_page():
+    return render_template("/Before_login_part/contact.html")
