@@ -13,3 +13,7 @@ def pricing():
 @app.route('/contact')
 def contact_page():
     return render_template("/Before_login_part/contact.html")
+
+@app.route('/login')
+def login_page():
+    return render_template("/Before_login_part/login.html")

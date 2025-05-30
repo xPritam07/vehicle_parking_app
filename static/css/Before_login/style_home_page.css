@@ -253,7 +253,7 @@ main{
     border-radius: 2rem;
     height: 20rem;
     width: 10rem;
-    background: linear-gradient(45deg, #ffffff21, #ffffff8f);
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(0, 200, 100, 0.2));
     transition: background-color 0.3s ease;
     box-shadow: 5px 5px 10px #258329;
 }
@@ -280,15 +280,15 @@ main{
 
 .service-card:hover {
     transform: scale(1.05);
-    background-color: #fff;
+    background: linear-gradient(45deg, rgba(0, 200, 100, 0.2), rgba(255, 255, 255, 0.5)); /* Slight variation */
     color: black;
 }
 
 .contact-form {
-    background-color: #ffffffce;
+    background-color: rgb(217, 250, 217);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 5px 5px 12px rgba(13, 102, 13, 0.5);
+    box-shadow: 5px 5px 12px rgb(13, 102, 13);
     width: 100%;
     max-width: 400px;
 }

@@ -64,10 +64,10 @@ body{
 }
 
 .contact-form {
-    background-color: #ffffffce;
+    background-color: rgb(217, 250, 217);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 5px 5px 12px rgba(13, 102, 13, 0.5);
+    box-shadow: 5px 5px 12px rgb(13, 102, 13);
     width: 100%;
     max-width: 400px;
 }
