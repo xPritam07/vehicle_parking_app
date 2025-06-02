@@ -4,18 +4,6 @@
     font-family: system-ui;
 }
 
-.page-wrapper {
-    width: 90%;
-    margin: 0 auto;
-}
-
-@media (max-width: 992px) {
-    .page-wrapper {
-    width: 100%;
-}
-}
-  
-
 body{
     height: 35rem;
     background-color: rgb(189, 235, 189);
@@ -23,6 +11,14 @@ body{
 
 .navbar-dark .navbar-nav .nav-link {
     color: #1b5e20;
+}
+
+.navbar-brand {
+    margin: 1vw 0 0 10vw;
+}
+
+#navOptions{
+    margin: 0 5vw 0 0;
 }
 
 .highlight-title {

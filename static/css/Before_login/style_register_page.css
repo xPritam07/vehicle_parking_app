@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+}
+
+.navbar-brand {
+    margin: 1vw 0 0 10vw;
+}
+
+#navOptions{
+    margin: 0 5vw 0 0;
+}
+
+body{
+    height: 218rem;
+    background-color: rgb(189, 235, 189);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #1b5e20;
+}
+
+.highlight-title {
+    color: #1C651B;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.highlight-title:hover {
+    text-shadow: 5px 5px 8px rgba(0, 100, 0, 0.5);
+    transform: scale(1.02);
+}
+
+.custom-homepage-buttons {
+    font-size: 1rem;
+    color: green;
+    font-weight: 600;
+}
+
+.custom-homepage-buttons:hover{
+    color: #fff !important;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    text-shadow: 2px 2px 8px rgb(25, 83, 10);
+    transform: scale(1.1);
+}
+
+.toggler-shadow{
+    background-color: #1C651B;
+}
+
+.toggler-shadow:hover{
+    box-shadow: 5px 5px 10px rgba(11, 49, 11, 0.6);
+}

@@ -17,3 +17,7 @@ def contact_page():
 @app.route('/login')
 def login_page():
     return render_template("/Before_login_part/login.html")
+
+@app.route("/register")
+def registration_page():
+    return render_template("/Before_login_part/register.html")
