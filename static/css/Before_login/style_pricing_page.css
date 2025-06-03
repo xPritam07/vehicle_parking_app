@@ -14,7 +14,7 @@ body{
 }
 
 .navbar-brand {
-    margin: 1vw 0 0 10vw;
+    margin: 0.8vw 0 0 10vw;
 }
 
 #navOptions{
@@ -69,7 +69,7 @@ body{
 }
 
 .container-pricing{
-    background: linear-gradient(to right, #25812b, #49fa46);
+    background: linear-gradient(to right, #25812b 0%,rgb(46, 219, 46) 50%,#5af758 100%);
     color: #ffffffb7;
     margin: auto;
     padding: 3rem;

@@ -31,17 +31,16 @@
       
           <!-- Collapsible nav content -->
           <div class="collapse navbar-collapse" id="navOptions">
-              <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
-                  <li class="nav-item"><a href="{{ url_for('pricing') }}" class="nav-link">Pricing</a></li>
-                  <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                  <li class="nav-item"><a href="{{ url_for('contact_page') }}" class="nav-link">Contact</a></li>
-                  <li class="nav-item"><a href="{{ url_for('login_page') }}" class="nav-link">Login</a></li>
-                  <li class="nav-item"><a href="#" class="nav-link">Sign Up</a></li>
-              </ul>
+            <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
+              <li class="nav-item"><a href="{{ url_for('home_page') }}" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="{{ url_for('pricing') }}" class="nav-link">Pricing</a></li>
+              <li class="nav-item"><a href="{{ url_for('about_page') }}" class="nav-link">About</a></li>
+              <li class="nav-item"><a href="{{ url_for('contact_page') }}" class="nav-link">Contact</a></li>
+              <li class="nav-item"><a href="{{ url_for('login_page') }}" class="nav-link">Login | Sign Up</a></li>
+            </ul>
           </div>
       </div>
   </nav>
-  <hr>
 </div>
 </header>
 <main>
@@ -52,11 +51,11 @@
         <h2 class="title">Sign in</h2>
         <div class="input-field">
           <div><i class="fas fa-envelope"></i></div>
-          <input type="text" placeholder="Email" />
+          <input type="email" placeholder="Email" required/>
         </div>
         <div class="input-field">
           <div><i class="fas fa-lock"></i></div>
-          <input type="password" placeholder="Password" />
+          <input type="password" placeholder="Password" required/>
         </div>
         <input type="submit" value="Login" class="btn solid" />
         <p class="social-text">Or Sign in with social platforms</p>
@@ -79,15 +78,15 @@
         <h2 class="title">Sign up</h2>
         <div class="input-field">
           <div><i class="fas fa-user"></i></div>
-          <input type="text" placeholder="Full Name" />
+          <input type="text" placeholder="Full Name" required/>
         </div>
         <div class="input-field">
           <div><i class="fas fa-envelope"></i></div>
-          <input type="email" placeholder="Email" />
+          <input type="email" placeholder="Email" required/>
         </div>
         <div class="input-field">
           <div><i class="fas fa-lock"></i></div>
-          <input type="password" placeholder="Password" />
+          <input type="password" placeholder="Password" required/>
         </div>
         <input type="submit" class="btn" value="Sign up" />
         <p class="social-text">Or Sign up with social platforms</p>
@@ -139,5 +138,69 @@
   </div>
 </div>
 </main>
+<footer>
+  <div class="container-footer">
+      <div class="footer-top-container">
+          <div class="footer-card">
+              <div class="footer-address">
+                  <h3>ParkoU</h3>
+                  <p>
+                      33 Pal Sakti street <br>
+                      Chennai, TN 603203 
+                      <br>
+                      <br>
+                      Phone: +91 7364 8836 62 <br> 
+                      Email: 23f3004460@gmail.com
+                  </p>
+              </div>
+          </div>
+          <div class="footer-card">
+              <div class="footer-card-childs">
+                  <p class="footer-top-heading">Usefull Links</p>
+                  <ul class="footer-top-list">
+                      <li>Home</li>
+                      <li>About Us</li>
+                      <li>Services</li>
+                      <li>Pricing</li>
+                      <li>Privacy Policy</li>
+                  </ul>
+              </div>
+              <div class="footer-card-childs">
+                  <p class="footer-top-heading">Our Services</p>
+                  <ul class="footer-top-list">
+                      <li>Quick Parking</li>
+                      <li>Closed Roof Parking</li>
+                      <li>CCTV Coverage</li>
+                      <li>Pre-Reserve Facility</li>
+                      <li>Security</li>
+                  </ul>
+              </div>
+              <div class="footer-card-childs">
+                  <p class="footer-top-heading">Information</p>
+                  <ul class="footer-top-list">
+                      <li>Terms of service</li>
+                      <li>Affiliate programs</li>
+                      <li>Careers</li>
+                      <li>Report issue</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bottom-container">
+          <div class="bottom-footer-card">
+              <p>@ Copyright <strong>ParkoU</strong>. All Rights Reserved
+              <br>
+              Designed by Pritam
+              </p>
+          </div>
+          <div class="bottom-footer-card">
+              <a href="#" class="media-links"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#" class="media-links"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="media-links"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#" class="media-links"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+      </div>
+  </div>
+</footer>
 <script src="/static/js/login_page.js"></script>
 {% endblock %}

@@ -13,19 +13,16 @@ body {
     background-color: rgb(189, 235, 189);
 }
 
-.page-wrapper {
-  width: 90%;
-  margin: 0 auto;
-}
-
-@media (max-width: 992px) {
-  .page-wrapper {
-  width: 100%;
-}
-}
-
 .navbar-dark .navbar-nav .nav-link {
-  color: #1b5e20;
+  color: #115016;
+}
+
+.navbar-brand {
+  margin: 0.8vw 0 0 10vw;
+}
+
+#navOptions{
+  margin: 0 5vw 0 0;
 }
 
 .highlight-title {
@@ -66,8 +63,9 @@ body {
   position: relative;
   width: 100%;
   background-color: #fff;
-  min-height: 90vh;
+  min-height: 80vh;
   overflow: hidden;
+  box-shadow: 5px 5px 10px #1C651B;
 }
  
 .forms-container {
@@ -89,7 +87,7 @@ body {
   grid-template-columns: 1fr;
   z-index: 5;
 }
-/*
+
 form {
   display: flex;
   align-items: center;
@@ -217,7 +215,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
+  background-image: linear-gradient(-45deg, #0ea109 0%, #26f813 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
@@ -278,11 +276,11 @@ form.sign-in-form {
 .right-panel .image,
 .right-panel .content {
   transform: translateX(800px);
-} */
+}
 
 /* ANIMATION */
 
-/* .container.sign-up-mode:before {
+.container.sign-up-mode:before {
   transform: translate(100%, -50%);
   right: 52%;
 }
@@ -420,9 +418,9 @@ form.sign-in-form {
     top: 5%;
     transform: translate(-50%, 0);
   }
-} */
+}
 
-/* @media (max-width: 570px) {
+@media (max-width: 570px) {
   form {
     padding: 0 1.5rem;
   }
@@ -446,4 +444,63 @@ form.sign-in-form {
     bottom: 28%;
     left: 50%;
   }
-} */
+}
+
+footer {
+  margin-top: 5rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.footer-top-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  color: #ccc;
+  background-color: #0a0b18;
+}
+
+.footer-card{
+  margin-top: 2rem;
+  width: 40rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.footer-card-childs {
+  width: 10rem;
+}
+
+.footer-bottom-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #ccc;
+  background-color: rgb(18, 18, 19);
+}
+
+.footer-top-list li{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-top-list li {
+  margin-bottom: 0.5rem;
+  white-space: nowrap; /* prevents line breaks */
+}
+
+.footer-top-heading {
+  font-weight: 560;
+  text-decoration: underline;
+  white-space: nowrap;
+  text-align: center;
+}

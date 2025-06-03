@@ -18,6 +18,6 @@ def contact_page():
 def login_page():
     return render_template("/Before_login_part/login.html")
 
-@app.route("/register")
-def registration_page():
-    return render_template("/Before_login_part/register.html")
+@app.route('/about')
+def about_page():
+    return render_template('/Before_login_part/about_page.html')

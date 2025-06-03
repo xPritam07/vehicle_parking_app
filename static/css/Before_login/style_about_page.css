@@ -4,21 +4,21 @@
     font-family: system-ui;
 }
 
-.navbar-brand {
-    margin: 1vw 0 0 10vw;
-}
-
-#navOptions{
-    margin: 0 5vw 0 0;
-}
-
 body{
-    height: 218rem;
+    height: 35rem;
     background-color: rgb(189, 235, 189);
 }
 
 .navbar-dark .navbar-nav .nav-link {
     color: #1b5e20;
+}
+
+.navbar-brand {
+    margin: 0.8vw 0 0 10vw;
+}
+
+#navOptions{
+    margin: 0 5vw 0 0;
 }
 
 .highlight-title {
