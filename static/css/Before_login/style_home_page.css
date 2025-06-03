@@ -165,26 +165,57 @@ main{
     gap: 5rem;
 }
 
-.cards{
-    background: linear-gradient(315deg, #ffffffcb, #ffffff);
-    color: #1b5e20;
-    height: 30rem;
+.cards {
     width: 18rem;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    border-radius: 3rem;
-    box-shadow: 5px 5px 10px rgb(17, 46, 3);
-    transition: background-color 0.3s ease;
-    transition: color 0.3s ease; 
+    height: 30rem;
+    perspective: 1000px;
+}
+  
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+  
+.cards:hover .card-inner {
+    transform: scale(1.02);
+}
+  
+.cards:active .card-inner {
+    transform: scale(1.02) rotateY(180deg);
 }
 
-.cards:hover{
-    background-color: #fff;
+.cards:hover .card-front,
+.cards:hover .card-back {
+  color: black;
+}
+  
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 3rem;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: linear-gradient(315deg, #ffffffcb, #ffffff);
+    color: #1b5e20;
+    box-shadow: 5px 5px 10px rgb(17, 46, 3);
+    padding: 1rem;
+  }
+  
+  .card-back {
+    transform: rotateY(180deg);
     color: black;
-    transform: scale(1.02);
+    text-align: center;
+  }
+
+.card-descp ul{
+    list-style: none;
 }
 
 .price-container {
