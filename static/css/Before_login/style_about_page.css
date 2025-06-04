@@ -2,10 +2,10 @@
     margin: 0;
     padding: 0;
     font-family: system-ui;
+    box-sizing: border-box;
 }
 
 body{
-    height: 35rem;
     background-color: rgb(189, 235, 189);
 }
 
@@ -53,4 +53,224 @@ body{
 
 .toggler-shadow:hover{
     box-shadow: 5px 5px 10px rgba(11, 49, 11, 0.6);
+}
+
+.topSection{
+    margin-top: 6vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+}
+
+.img-container .outer{
+    height: 24vw;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px solid #ccc; */
+    /* border-radius: 10px; */
+    /* background-color: #ccc;
+    box-shadow: 8px 8px 10px rgb(58, 57, 57); */
+}
+
+img{
+    height: 20vw;
+}
+
+.text-container{
+    max-width: 30vw;
+    font-size: 1.02vw;
+    text-align: center;
+}
+
+.middleSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: lightgrey;
+    width: 100%;
+    margin: 8vw 0 0 0;
+}
+
+.heading-middle{
+    margin: 2vw 0 1vw 0;
+}
+
+
+/* Default: Mobile - 1 per row */
+.cards {
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0.8vw;
+    padding: 0.8vw;
+    border-radius: 0.8vw;
+}
+
+/* Tablet: 2 cards per row */
+@media (min-width: 600px) {
+    .cards {
+        flex: 1 1 45%;
+        max-width: 45%;
+    }
+}
+
+/* Desktop: 3 cards per row */
+@media (min-width: 992px) {
+    .cards {
+        flex: 1 1 30%;
+        max-width: 30%;
+    }
+}
+
+.card-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cards:nth-child(1){
+    background-color: #ff6289;
+}
+
+.cards:nth-child(2){
+    background-color: #fcbf58;
+}
+
+.cards:nth-child(3){
+    background-color: #44bfc3;
+}
+
+.cards:nth-child(4){
+    background-color: #77b05d;
+}
+
+.cards:nth-child(5){
+    background-color: #7d78b1;
+}
+
+.cards:nth-child(6){
+    background-color: #4a90e2;
+}
+
+.card-heading{
+    font-size: 1.03vw;
+    font-weight: 550;
+    color: #fff;
+}
+
+.card-descp{
+    color: #fff;
+}
+
+.card-img {
+    background-color: #fff;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vw;
+}
+
+.card-img i{
+    font-size: 1.5rem;
+}
+
+#about_page-sign-up-btn{
+    height: 2.5rem;
+    width: 6rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    color: #4a90e2;
+    box-shadow: 4px 4px 6px #233e5e;
+}
+
+#about_page-sign-up-btn:hover{
+    background-color: #ccc;
+    color: #2a5381;
+}
+
+#about_page-plans-btn{
+    height: 2.8rem;
+    width: 6.5rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    color: #77b05d;
+    box-shadow: 4px 4px 6px #4f753e;
+}
+
+#about_page-plans-btn:hover{
+    background-color: #ccc;
+    color: #537a41;
+}
+
+footer {
+    margin-top: 5rem;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.footer-top-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    color: #ccc;
+    background-color: #0a0b18;
+}
+
+.footer-card{
+    margin-top: 2rem;
+    width: 40rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+}
+
+.footer-card-childs {
+    width: 10rem;
+}
+
+.footer-bottom-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #ccc;
+    background-color: rgb(18, 18, 19);
+}
+
+.footer-top-list li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-top-list li {
+    margin-bottom: 0.5rem;
+    white-space: nowrap; /* prevents line breaks */
+}
+
+.footer-top-heading {
+    font-weight: 560;
+    text-decoration: underline;
+    white-space: nowrap;
+    text-align: center;
 }
