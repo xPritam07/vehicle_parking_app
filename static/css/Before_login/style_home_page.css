@@ -407,7 +407,7 @@ footer {
 
 .footer-card{
     margin-top: 2rem;
-    width: 40rem;
+    /* width: 40rem; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
