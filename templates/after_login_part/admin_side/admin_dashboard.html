@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/static/css/after_login/admin_side/admin_dashboard.css">
+{% endblock %}
+{% block title %}
+    Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <header class="header-content">
+        <a class="brand-logo" href="#">
+            <i class="fa-solid fa-location-dot fa-3x"></i>
+            <div class="brand">
+                <h4>Parkou</h4>
+                <p>admin dashboard</p>
+            </div>
+        </a>
+        <nav class="navbar">
+            <a href="#Users" class="nav-link">Users</a>
+            <a href="#Parking" class="nav-link">Parking Lot</a>
+            <a href="#Doubts" class="nav-link">Doubts</a>
+        </nav>
+        <button>
+            <img class="logout-img" src="/static/images/logout.svg" alt="">
+            Logout
+        </button>
+    </header>
+{% endblock %}

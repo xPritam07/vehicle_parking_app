@@ -2,6 +2,8 @@ from flask import render_template, request, redirect, url_for, session, flash
 from models.models import db, User, ParkingLot, ParkingSpot, Reservation, Doubt
 from app import app
 from functools import wraps
+from werkzeug.security import check_password_hash
+
 
 
 def auth_required(func):
@@ -55,12 +57,19 @@ def login_page():
             password = request.form.get('password')
             user = User.query.filter_by(emailId=emailId).first()
 
-            if emailId == '' or password == '':
-                return flash("Email or Password can not be empty.", "danger")
             if not user:
                 flash("User does not exist.")
                 return redirect(url_for('login_page'))
-            return redirect(url_for('#'))
+            if not user.check_password(password):
+                flash("Incorrect password.", "danger")
+                return redirect(url_for('login_page'))
+            
+            session['user_id'] = user.id
+
+            if user.is_admin:
+                return redirect(url_for('admin_dashboard'))
+            else:
+                return redirect(url_for('user_dashboard'))
         
         elif form_type == 'register':
             fullName = request.form.get('fullName')
@@ -79,3 +88,14 @@ def login_page():
 
             flash('Successful registration!', 'success')
             return redirect(url_for('login_page'))
+
+@app.route('/dashboard')
+@admin_required
+def admin_dashboard():
+    user = User.query.get('user_id')
+    return render_template('/after_login_part/admin_side/admin_dashboard.html', user = user)
+
+@auth_required
+def user_dashboard():
+    user = User.query.get('user_id')
+    return render_template('/after_login_part/user_side/user_dashboard.html', user=user)
