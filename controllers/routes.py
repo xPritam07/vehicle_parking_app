@@ -28,17 +28,42 @@ def admin_required(func):
     return inner
 
 
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 def home_page():
-    return render_template('/Before_login_part/home_page.html')
+    if request.method == "GET":
+        return render_template('/Before_login_part/home_page.html')
 
+    else:
+        name = request.form.get('name')
+        email = request.form.get('email')
+        question = request.form.get('question')
+
+        doubt = Doubt(name=name,email=email,question=question)
+
+        db.session.add(doubt)
+        db.session.commit()
+    
+        return render_template("/Before_login_part/home_page.html")
+    
 @app.route('/pricing')
 def pricing():
     return render_template("/Before_login_part/pricing_page.html")
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact_page():
-    return render_template("/Before_login_part/contact.html")
+    if request.method == "GET":
+        return render_template("/Before_login_part/contact.html")
+    else:
+        name = request.form.get('name')
+        email = request.form.get('email')
+        question = request.form.get('question')
+
+        doubt = Doubt(name=name,email=email,question=question)
+
+        db.session.add(doubt)
+        db.session.commit()
+    
+        return render_template("/Before_login_part/contact.html")
 
 @app.route('/about')
 def about_page():
@@ -89,13 +114,14 @@ def login_page():
             flash('Successful registration!', 'success')
             return redirect(url_for('login_page'))
 
-@app.route('/dashboard')
+@app.route('/dashboard/admin')
 @admin_required
 def admin_dashboard():
-    user = User.query.get('user_id')
+    user = User.query.get(session['user_id'])
     return render_template('/after_login_part/admin_side/admin_dashboard.html', user = user)
 
+@app.route("/dashboard/user")
 @auth_required
 def user_dashboard():
-    user = User.query.get('user_id')
+    user = User.query.get(session['user_id'])
     return render_template('/after_login_part/user_side/user_dashboard.html', user=user)

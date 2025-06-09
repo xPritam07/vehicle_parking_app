@@ -2,11 +2,12 @@
     margin: 0;
     padding: 0;
     font-family: system-ui;
+    box-sizing: border-box;
 }
 
 body{
-    height: 218rem;
     background-color: rgb(189, 235, 189);
+    margin: auto;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -64,6 +65,19 @@ body{
 
 .img-container {
     box-shadow: 8px 8px 10px #05770b;
+    animation: slidingFromRight 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes slidingFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 main{
@@ -73,6 +87,22 @@ main{
 .content {
     width: 40vh;
     margin-top: 10vh;
+    animation: slideFromLeft 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes slideFromLeft {
+    
+    0%{
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
 }
 
 .content .bigPara h1 {
@@ -169,6 +199,22 @@ main{
     width: 18rem;
     height: 30rem;
     perspective: 1000px;
+    animation: slideFromLeft 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes slideFromLeft {
+    
+    0%{
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
 }
   
 .card-inner {
@@ -230,86 +276,89 @@ main{
     font-weight: 580;
 }
 
-.service-container{
-    margin-top: 10rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-}
-
-.service-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem; /* space between cards */
-}
-
-/* Default: Mobile - 1 per row */
-.service-card {
-    flex: 1 1 100%;
+.service-container {
+    margin: 5rem auto;
     max-width: 100%;
-}
-
-/* Tablet: 2 cards per row */
-@media (min-width: 600px) {
-    .service-card {
-        flex: 1 1 45%;
-        max-width: 45%;
-    }
-}
-
-/* Desktop: 3 cards per row */
-@media (min-width: 992px) {
-    .service-card {
-        flex: 1 1 30%;
-        max-width: 30%;
-    }
-}
-
-.service-card-image{
-    height: 12rem;
-    width: 14rem;
-}
-
-.service-card {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    border-radius: 2rem;
-    height: 20rem;
-    width: 10rem;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(0, 200, 100, 0.2));
-    transition: background-color 0.3s ease;
-    box-shadow: 5px 5px 10px #258329;
+    align-items: center;
+    overflow: hidden;
 }
 
-.service-heading h3{
+.service-heading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.service-heading h3 {
     font-size: 2rem;
     font-weight: 600;
-    margin-top: 2rem;
 }
 
-.service-tagline{
-    font-size: 1.2rem;
-}
-
-.service-card-container {
-    margin-top: 2rem;
-}
-
-.service-card-descp {
-    margin-top: 0.8rem;
+.service-tagline {
     font-size: 1.2rem;
     font-weight: 500;
+    color: #333;
+}
+
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-track {
+    display: flex;
+    max-width: 90%;
+    width: max-content;
+    animation: scroll-left 20s linear infinite;
+}
+
+.card-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0; /* prevents resizing */
+    transition: 0.5s ease;
+    margin: 2rem auto;
 }
 
 .service-card:hover {
-    transform: scale(1.05);
-    background: linear-gradient(45deg, rgba(0, 200, 100, 0.2), rgba(255, 255, 255, 0.5)); /* Slight variation */
-    color: black;
+    transform: scale(1.1);
 }
+
+.service-card-container img {
+    height: 30vh;
+    width: 35vh;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.service-card-descp p {
+    margin-top: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Animation Keyframes */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.slider-container:hover .slider-track {
+    animation-play-state: paused;
+}
+
 
 .contact-form {
     background-color: rgb(217, 250, 217);

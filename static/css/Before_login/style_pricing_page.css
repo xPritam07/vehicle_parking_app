@@ -55,6 +55,11 @@ body{
     box-shadow: 5px 5px 10px rgba(11, 49, 11, 0.6);
 }
 
+.heading-pricing {
+    animation: slideFromLeft 1.5s ease forwards;
+    opacity: 0;
+}
+
 .heading-pricing h3{
     font-size: 2.2rem;
     font-weight: 600;
@@ -101,8 +106,24 @@ body{
     width: 18rem;
     height: 30rem;
     perspective: 1000px;
+    animation: slideFromLeft 1.5s ease forwards;
+    opacity: 0;
 }
-  
+
+@keyframes slideFromLeft {
+    
+    0%{
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
 .card-inner {
     width: 100%;
     height: 100%;
@@ -161,6 +182,17 @@ body{
     font-size: 2.2rem;
     font-weight: 580;
 }
+
+.cards,
+.card-inner,
+.card-front,
+.card-back {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 
 footer {
     margin-top: 5rem;

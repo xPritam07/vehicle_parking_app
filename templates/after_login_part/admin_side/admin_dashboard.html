@@ -9,21 +9,27 @@
 
 {% block content %}
     <header class="header-content">
-        <a class="brand-logo" href="#">
-            <i class="fa-solid fa-location-dot fa-3x"></i>
-            <div class="brand">
-                <h4>Parkou</h4>
-                <p>admin dashboard</p>
-            </div>
-        </a>
+        <div class="welcome-note">
+            <h5>Welcome to Admin</h5>
+        </div>
+        <div class="brand">
+            <h4>ParkoU</h4>
+        </div>
+
         <nav class="navbar">
-            <a href="#Users" class="nav-link">Users</a>
-            <a href="#Parking" class="nav-link">Parking Lot</a>
-            <a href="#Doubts" class="nav-link">Doubts</a>
+            <div class="nav-links">
+                <a href="#Parking" class="nav-link">Edit Lot</a>
+                <a href="#Users" class="nav-link">Users</a>
+                <a href="#Doubts" class="nav-link">Doubts</a>
+                <a href="#" class="nav-link">Edit profile</a>
+                <button type="button" id="btn-logout" class="btn btn-danger nav-link">
+                    <i class="fa-solid fa-right-from-bracket"></i>                
+                    Logout
+                </button>
+            </div>
+            <button type="button" class="menu-icon" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </nav>
-        <button>
-            <img class="logout-img" src="/static/images/logout.svg" alt="">
-            Logout
-        </button>
     </header>
 {% endblock %}
