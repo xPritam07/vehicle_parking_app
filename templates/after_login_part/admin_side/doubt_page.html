@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="/static/css/after_login/admin_side/admin_dashboard.css">
+    <link rel="stylesheet" href="/static/css/after_login/admin_side/doubt_page.css">
 {% endblock %}
 {% block title %}
-    Admin Dashboard
+    Doubts
 {% endblock %}
 
 {% block content %}
     <header class="header-content">
         <div class="welcome-note">
-            <h5>Welcome to Admin</h5>
+            <h5>Doubt clearing</h5>
         </div>
         <div class="brand">
             <h4>ParkoU</h4>
@@ -34,4 +34,33 @@
             </button>
         </nav>
     </header>
+    <main class="table" id="customers_table">
+        <section class="table__header">
+            <h1>Doubt list</h1>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Name </th>
+                        <th> Email </th>
+                        <th> Message </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doubt in doubts %}
+                        <tr>
+                        <td> {{ doubt.name }} </td>
+                        <td> {{ doubt.email }} </td>
+                        <td> {{ doubt.question }} </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                        <td colspan="3"> No doubts found </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
 {% endblock %}

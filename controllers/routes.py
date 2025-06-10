@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, session, flash
 from models.models import db, User, ParkingLot, ParkingSpot, Reservation, Doubt
 from app import app
 from functools import wraps
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 
@@ -118,10 +118,45 @@ def login_page():
 @admin_required
 def admin_dashboard():
     user = User.query.get(session['user_id'])
+    if 'user_id' not in session:
+        return redirect(url_for('login_page'))
     return render_template('/after_login_part/admin_side/admin_dashboard.html', user = user)
+
+@app.route('/admin/doubts')
+@admin_required
+def doubt_page():
+    doubts = Doubt.query.all()
+    return render_template('/after_login_part/admin_side/doubt_page.html', doubts=doubts)
+
+
+@app.route('/admin/edit/profile', methods = ["GET", "POST"])
+@admin_required
+def edit_admin_profile():
+    if request.method == "GET":
+        return render_template("/after_login_part/admin_side/edit_profile.html")
+    else:
+        name = request.form.get('fullName')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        passhash = generate_password_hash(password, method='pbkdf2:sha256')
+
+        user = User.query.get(session['user_id'])
+
+        user.fullName = name
+        user.emailId = email
+        user.passhash = passhash
+
+        db.session.commit()
+
+        return redirect(url_for('admin_dashboard'))
 
 @app.route("/dashboard/user")
 @auth_required
 def user_dashboard():
     user = User.query.get(session['user_id'])
     return render_template('/after_login_part/user_side/user_dashboard.html', user=user)
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id',None)
+    return redirect(url_for('login_page'))
