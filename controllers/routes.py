@@ -129,6 +129,30 @@ def doubt_page():
     return render_template('/after_login_part/admin_side/doubt_page.html', doubts=doubts)
 
 
+@app.route('/doubt/delete/<int:doubt_id>', methods = ['POST'])
+@admin_required
+def delete_doubt(doubt_id):
+    doubt = Doubt.query.get_or_404(doubt_id)
+
+    db.session.delete(doubt)
+    db.session.commit()
+
+    return redirect(url_for('doubt_page'))
+
+@app.route('/admin/doubt/reply/<int:doubt_id>')
+@admin_required
+def doubt_reply(doubt_id):
+    doubt = Doubt.query.get_or_404(doubt_id)
+
+    return render_template("/after_login_part/admin_side/mail_page.html", doubt = doubt)
+
+@app.route('/back')
+@admin_required
+def return_back():
+    return redirect(url_for('doubt_page'))
+
+
+
 @app.route('/admin/edit/profile', methods = ["GET", "POST"])
 @admin_required
 def edit_admin_profile():
@@ -149,6 +173,11 @@ def edit_admin_profile():
         db.session.commit()
 
         return redirect(url_for('admin_dashboard'))
+    
+@app.route("/admin/user")
+@admin_required
+def user_details():
+    return render_template('/after_login_part/admin_side/user_details.html')
 
 @app.route("/dashboard/user")
 @auth_required

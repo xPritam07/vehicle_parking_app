@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/static/css/after_login/admin_side/mail_page.css">
+{% endblock %}
+
+{% block title %}
+    Reply Doubts
+{% endblock %}
+
+{% block content %}
+<header class="header-content">
+    <div class="brand">
+        <h4>ParkoU</h4>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="top-section">
+            <h3>Replying : {{ doubt.name }}</h3>
+        </div>
+        <div class="middle-section">
+            <div class="middle-heading">
+                <h4>Query</h4>
+            </div>
+            <div class="middle-content">
+                <p>{{ doubt.question }}</p>
+            </div>
+        </div>
+        <div class="bottom-section">
+            <form onsubmit="sendReply(event)" class="mail-form">
+                <h3>Reply</h3>
+                <div class="mail">
+                    <textarea id="replyMessage" placeholder="Type your reply here..." rows="6"></textarea>
+                </div>
+                <div class="mail-control">
+                    <button type="submit" class="btn btn-success">Reply</button>
+            
+                    <a href="{{ url_for('return_back') }}" class="btn btn-warning">Go back</a>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</main>
+<script src="/static/js/after_login_js/mailPage.js"></script>
+{% endblock %}

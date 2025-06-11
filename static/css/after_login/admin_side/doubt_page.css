@@ -106,7 +106,7 @@ body {
 
 /*No Hover effect for logout button */
 #btn-logout:hover {
-    background-color: var(--background-color);
+    background-color: red;
 }
 
 /* ===== MENU ICON ===== */
@@ -135,27 +135,27 @@ body {
    }
    
    
-   body {
-       min-height: 100vh;
-       background: url("/static/images/mail-windows-email-icon-xa3cs0smefry2gsh.jpg") center / cover;
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       flex-direction: column;
-       gap: 1rem;
-   }
-   
-   main.table {
-       width: 82vw;
-       height: 90vh;
-       background-color: #fff5;
-   
-       backdrop-filter: blur(7px);
-       box-shadow: 0 .4rem .8rem #0005;
-       border-radius: .8rem;
-   
-       overflow: hidden;
-   }
+body {
+    min-height: 100vh;
+    background: url("/static/images/mail-windows-email-icon-xa3cs0smefry2gsh.jpg") center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+main.table {
+    width: 82vw;
+    height: 90vh;
+    background-color: #fff5;
+
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    overflow: hidden;
+}
    
    .table__header {
        width: 100%;
@@ -261,3 +261,36 @@ body {
        background-color: #6c00bd;
        color: #fff;
    }
+   .msg-control button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.msg-control button i {
+    color: #333;
+    font-size: 1rem;
+}
+
+
+.msg-doubt{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.msg-data{
+    max-width: 600px;
+}
+
+.msg-control{
+    display: flex;
+    flex-wrap: wrap;
+    gap:15px;
+    opacity: 0;
+}
+
+tr:hover .msg-control{
+    opacity: 1;
+}
