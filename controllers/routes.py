@@ -177,7 +177,8 @@ def edit_admin_profile():
 @app.route("/admin/user")
 @admin_required
 def user_details():
-    return render_template('/after_login_part/admin_side/user_details.html')
+    users = User.query.all()
+    return render_template('/after_login_part/admin_side/user_details.html', users = users)
 
 @app.route("/dashboard/user")
 @auth_required

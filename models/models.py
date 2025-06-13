@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from app import app
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
+from datetime import datetime
 
 db = SQLAlchemy(app)
 
@@ -19,6 +20,7 @@ class User(db.Model):
     emailId = db.Column(db.String(128), nullable = False, unique = True)
     passhash = db.Column(db.String(128), nullable = False, unique = False)
     is_admin = db.Column(db.Boolean, nullable = False, default = False)
+    registered_on = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     reservation = db.relationship('Reservation', cascade = "all, delete", passive_deletes = True, back_populates = 'user')
 
