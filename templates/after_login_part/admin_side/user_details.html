@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="/static/css/after_login/admin_side/test.css">
+    <link rel="stylesheet" href="/static/css/after_login/admin_side/user_details.css">
 {% endblock %}
 
 {% block title %}
@@ -38,9 +38,9 @@
 <main class="table" id="customers_table">
     <section class="table__header">
         <h1>Users list</h1>
-        <form action="">
-            <input type="email" placeholder="Enter email">
-            <input type="submit" class="btn btn-danger">
+        <form id="searchForm" method="get" action="/admin/user/info">
+            <input id="email" name="email" type="email" placeholder="Enter email" required>
+            <input id="submitBtn" type="submit" value="Search" class="btn btn-info">
         </form>
     </section>
     <section class="table__body">
@@ -64,7 +64,7 @@
                                 {{ user.registered_on }} 
                             </div> 
                             <div class="msg-control">
-                                <a href="#">
+                                <a href="{{ url_for('admin_user_info', user=user) }}">
                                     <button type="button">
                                         <i class="fa-solid fa-reply"></i>
                                     </button>

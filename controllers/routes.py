@@ -151,6 +151,14 @@ def doubt_reply(doubt_id):
 def return_back():
     return redirect(url_for('doubt_page'))
 
+@app.route('/admin/user/info', methods=['GET'])
+@admin_required
+def admin_user_info():
+    email = request.args.get('email')
+    user = None
+    if email:
+        user = User.query.filter_by(emailId = email).first()
+    return render_template("/after_login_part/admin_side/user_info.html", user = user)
 
 
 @app.route('/admin/edit/profile', methods = ["GET", "POST"])

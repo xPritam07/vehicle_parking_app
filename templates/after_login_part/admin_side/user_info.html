@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/static/css/after_login/admin_side/user_info.css">
+{% endblock %}
+
+{% block title %}
+    User Info
+{% endblock %}
+
+{% block content %}
+<header class="header-content">
+    <div class="brand">
+        <h4>ParkoU</h4>
+    </div>
+</header>
+<main>
+    {% if user %}
+        <h1>Profile for {{ user.fullName }}</h1>
+        <p><strong>Email:</strong> {{ user.emailId }}</p>
+        <p><strong>Is Admin:</strong> {{ 'Yes' if user.is_admin else 'No' }}</p>
+        <p><strong>Registered On:</strong> {{ user.registered_on.strftime('%Y-%m-%d %H:%M') }}</p>
+    {% else %}
+        <h2>No user found with that email.</h2>
+    {% endif %}    
+</main>
+{% endblock %}

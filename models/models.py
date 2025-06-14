@@ -80,7 +80,6 @@ class Doubt(db.Model):
     email = db.Column(db.String(128), nullable = False)
     question = db.Column(db.String(512), nullable = False)
 
-
 with app.app_context(): 
     db.create_all()
     admin = User.query.filter_by(emailId='admin@gmail.com').first()
