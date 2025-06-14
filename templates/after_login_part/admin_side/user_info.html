@@ -14,13 +14,89 @@
     </div>
 </header>
 <main>
-    {% if user %}
-        <h1>Profile for {{ user.fullName }}</h1>
-        <p><strong>Email:</strong> {{ user.emailId }}</p>
-        <p><strong>Is Admin:</strong> {{ 'Yes' if user.is_admin else 'No' }}</p>
-        <p><strong>Registered On:</strong> {{ user.registered_on.strftime('%Y-%m-%d %H:%M') }}</p>
-    {% else %}
-        <h2>No user found with that email.</h2>
-    {% endif %}    
+    <div class="container">
+        <div class="top-container">
+            <div class="left-top">
+                <i class="fa-solid fa-user"></i>
+                {% if user %}
+                    <h1>{{ user.fullName }}</h1>
+                    <p><strong>Email:</strong> {{ user.emailId }}</p>
+                    <p><strong>Is Admin:</strong> {{ 'Yes' if user.is_admin else 'No' }}</p>
+                    <p><strong>Registered On:</strong> {{ user.registered_on.strftime('%Y-%m-%d %H:%M') }}</p>
+                {% else %}
+                    <h2>No user found with that email.</h2>
+                {% endif %}
+                <div class="controls">
+                    <button class="btn btn-warning">Go Back</button>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="right-top">
+                <div class="cards-container">
+                    <div class="cards">
+                        <div class="card-head">Lite Count</div>
+                        <div class="card-count">000</div>
+                    </div>
+                    <div class="cards">
+                        <div class="card-head">Smart Count</div>
+                        <div class="card-count">000</div>
+                    </div>
+                    <div class="cards">
+                        <div class="card-head">Pro Count</div>
+                        <div class="card-count">000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-container table" id="customers_table">
+            <section class="table__header">
+                <h1>Reservation Info</h1>
+            </section>
+            <section class="table__body">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th> Spot ID </th>
+                            <th> Parking Timestamp </th>
+                            <th> Leaving Timestamp </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        {% if not user.is_admin %}
+                            <tr>
+                            <td> {{ user.fullName }} </td>
+                            <td> {{ user.emailId }} </td>
+                            <td>
+                                <div class="msg-doubt">
+                                    <div class="msg-data">
+                                        {{ user.registered_on }} 
+                                    </div> 
+                                    <div class="msg-control">
+                                        <a href="{{ url_for('admin_user_info') }}?email={{ user.emailId }}">
+                                            <button type="button">
+                                                <i class="fa-solid fa-reply"></i>
+                                            </button>
+                                        </a>                                    
+                                        <form action="#" method="POST" onsubmit="return confirm('Are you sure you want to delete this doubt?');">
+                                            <button type="submit">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                            </tr>
+                        {% endif %}
+                        {% else %}
+                            <tr>
+                            <td colspan="3"> No Users found </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>  
 </main>
 {% endblock %}

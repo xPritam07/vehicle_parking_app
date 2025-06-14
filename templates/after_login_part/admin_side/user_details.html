@@ -64,7 +64,7 @@
                                 {{ user.registered_on }} 
                             </div> 
                             <div class="msg-control">
-                                <a href="{{ url_for('admin_user_info', user=user) }}">
+                                <a href="{{ url_for('admin_user_info') }}?email={{ user.emailId }}">
                                     <button type="button">
                                         <i class="fa-solid fa-reply"></i>
                                     </button>
