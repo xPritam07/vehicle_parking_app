@@ -128,7 +128,6 @@ def doubt_page():
     doubts = Doubt.query.all()
     return render_template('/after_login_part/admin_side/doubt_page.html', doubts=doubts)
 
-
 @app.route('/doubt/delete/<int:doubt_id>', methods = ['POST'])
 @admin_required
 def delete_doubt(doubt_id):
@@ -150,16 +149,6 @@ def doubt_reply(doubt_id):
 @admin_required
 def return_back():
     return redirect(url_for('doubt_page'))
-
-@app.route('/admin/user/info', methods=['GET'])
-@admin_required
-def admin_user_info():
-    email = request.args.get('email')
-    user = None
-    if email:
-        user = User.query.filter_by(emailId = email).first()
-    return render_template("/after_login_part/admin_side/user_info.html", user = user)
-
 
 @app.route('/admin/edit/profile', methods = ["GET", "POST"])
 @admin_required
@@ -187,6 +176,25 @@ def edit_admin_profile():
 def user_details():
     users = User.query.all()
     return render_template('/after_login_part/admin_side/user_details.html', users = users)
+
+@app.route('/admin/user/info', methods=['GET'])
+@admin_required
+def admin_user_info():
+    email = request.args.get('email')
+    user = None
+    if email:
+        user = User.query.filter_by(emailId = email).first()
+    return render_template("/after_login_part/admin_side/user_info.html", user = user)
+
+@app.route('/delete/user/<int:user_id>', methods = ["POST"])
+@admin_required
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return redirect(url_for('user_details'))
 
 @app.route("/dashboard/user")
 @auth_required
