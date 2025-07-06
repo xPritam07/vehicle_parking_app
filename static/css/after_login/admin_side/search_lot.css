@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+    --primary-color: #6366f1;
+    --accent-color: #3f83f8;
+    --text-color: #333;
+    --link-color: #fff;
+    --background-color: #40b0b4;
+    --light-grey: #f0f0f0;
+    --grey: #808080;
+    --dark-grey: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    text-decoration: none;
+    text-align: center;
+}
+
+body {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.header-content {
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 90px;
+}
+
+.brand h4{
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--link-color);
+}
+
+.info-container{
+    background-color: #fff5;
+    backdrop-filter: blur(7px);}
+
+main{
+    background: url('/static/images/html_table.jpg') center / cover no-repeat;
+
+}
+
+form {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    padding: 2rem;
+    margin: 5vh auto;
+
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.input-field {
+    max-width: 500px;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 55px;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-field input {
+    width: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+  
+.input-field div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.input-field input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+}
+
+.current-value{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.marker{
+    color:#fff;
+    font-weight: 550;
+}
+
+.feature{
+    font-size: 1.05rem;
+    font-weight: 550;
+    color: #fff;
+}
+
+.value{
+    font-size: 1.05rem;
+    font-weight: 550;
+    color: #fff;
+}
+
+.form-heading h3{
+    font-weight: 600;
+    color: #fff;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}

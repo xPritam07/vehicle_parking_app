@@ -253,10 +253,12 @@ def user_details():
 @admin_required
 def admin_user_info():
     email = request.args.get('email')
-    user = None
     if email:
         user = User.query.filter_by(emailId = email).first()
-    return render_template("/after_login_part/admin_side/user_info.html", user = user)
+        if user:
+            return render_template("/after_login_part/admin_side/user_info.html", user = user)
+        else:
+            return redirect(url_for('user_details'))
 
 @app.route('/delete/user/<int:user_id>', methods = ["POST"])
 @admin_required

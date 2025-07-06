@@ -55,7 +55,7 @@
                 <!-- Update Parking Lot Form -->
                 <div class="form">
                     <h2>Update Lot</h2>
-                    <form method="POST" action="{{ url_for('admin_dashboard') }}">
+                    <form id="lot-update-form" method="POST" action="{{ url_for('admin_dashboard') }}">
                         <input type="hidden" name="form_type" value="update-lot">
                         <input type="number" id="lot-number" name="id" placeholder="Lot ID" required>
                         <input type="submit" id="update-submit" value="Show">

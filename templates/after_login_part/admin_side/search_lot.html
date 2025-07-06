@@ -14,5 +14,88 @@
         <h4>ParkoU</h4>
     </div>
 </header>
-    
+<main>
+    <div class="container">
+        <div class="form-container">
+            <form action="/" method="POST" class="edit-lot-form" onsubmit="return confirm('Are you sure you want to update this Lot?');">
+                <div class="current-value">
+                    <div class="feature">
+                        <p>City</p>
+                    </div>
+                    <p class="marker">:</p>
+                    <div class="value">
+                        <p>{{ lot.locationName }}</p>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="locationName" name="locationName" placeholder="City">
+                </div>
+                <div class="current-value">
+                    <div class="feature">
+                        <p>Address</p>
+                    </div>
+                    <p class="marker">:</p>
+                    <div class="value">
+                        <p>{{ lot.address }}</p>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="address" name="address" placeholder="Address">
+                </div>
+                <div class="current-value">
+                    <div class="feature">
+                        <p>Pincode</p>
+                    </div>
+                    <p class="marker">:</p>
+                    <div class="value">
+                        <p>{{ lot.pincode }}</p>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="pincode" name="pincode" placeholder="Pincode">
+                </div>
+                <div class="current-value">
+                    <div class="feature">
+                        <p>ParkLite Count</p>
+                    </div>
+                    <p class="marker">:</p>
+                    <div class="value">
+                        <p>{{ lot.parkLiteCount }}</p>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="parklitecount" name="parkLiteCount" placeholder="ParkLite Count">
+                </div>
+                <div class="current-value">
+                    <div class="feature">
+                        <p>ParkSmart Count</p>
+                    </div>
+                    <p class="marker">:</p>
+                    <div class="value">
+                        <p>{{ lot.parkSmartCount }}</p>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="parksmartcount" name="parkSmartCount" placeholder="ParkSmart Count">
+                </div>
+                <div class="current-value">
+                    <div class="feature">
+                        <p>ParkPro Count</p>
+                    </div>
+                    <p class="marker">:</p>
+                    <div class="value">
+                        <p>{{ lot.parkProCount }}</p>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="parkprocount" name="parkProCount" placeholder="ParkPro Count">
+                </div>
+                <div class="controls">
+                    <button type="submit" class="btn btn-danger">Update</button>
+                    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-warning" style="padding: 0.5rem 1rem; text-decoration: none;">Go Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
 {% endblock %}
