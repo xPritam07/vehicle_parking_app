@@ -27,7 +27,6 @@ body {
     flex-direction: column;
 }
 
-/* ===== HEADER ===== */
 .header-content {
     background-color: var(--background-color);
     display: flex;

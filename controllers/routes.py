@@ -189,10 +189,47 @@ def admin_dashboard():
             lot = ParkingLot.query.get_or_404(id)
             return redirect(url_for('update_lot', lot_id=lot.id))
 
-@app.route('/update/lot/<int:lot_id>')
+@app.route('/update/lot/<int:lot_id>', methods=['GET', 'POST'])
+@admin_required
 def update_lot(lot_id):
     lot = ParkingLot.query.get_or_404(lot_id)
-    return render_template('/after_login_part/admin_side/search_lot.html', lot=lot)
+
+    if request.method == 'GET':
+        return render_template('/after_login_part/admin_side/search_lot.html', lot=lot)
+
+    # POST request: update only the provided fields
+    try:
+        locationName = request.form.get('locationName')
+        address = request.form.get('address')
+        pincode = request.form.get('pincode')
+
+        # Parking counts (special handling because 0 is valid)
+        parkLiteCount_raw = request.form.get('parkLiteCount')
+        parkSmartCount_raw = request.form.get('parkSmartCount')
+        parkProCount_raw = request.form.get('parkProCount')
+
+        # Update only if provided
+        if locationName:
+            lot.locationName = locationName
+        if address:
+            lot.address = address
+        if pincode:
+            lot.pincode = pincode
+
+        if parkLiteCount_raw != '' and parkLiteCount_raw is not None:
+            lot.parkLiteCount = int(parkLiteCount_raw)
+        if parkSmartCount_raw != '' and parkSmartCount_raw is not None:
+            lot.parkSmartCount = int(parkSmartCount_raw)
+        if parkProCount_raw != '' and parkProCount_raw is not None:
+            lot.parkProCount = int(parkProCount_raw)
+
+        # Commit updates
+        db.session.commit()
+        return redirect(url_for('admin_dashboard'))
+
+    except Exception as e:
+        db.session.rollback()
+        return redirect(url_for('update_lot', lot_id=lot_id))
 
 @app.route('/admin/doubts')
 @admin_required
