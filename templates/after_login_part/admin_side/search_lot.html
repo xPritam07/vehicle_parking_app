@@ -13,6 +13,12 @@
     <div class="brand">
         <h4>ParkoU</h4>
     </div>
+    <div class="control">
+        <a href="{{ url_for('admin_dashboard') }}" id="go-back-btn" class="btn btn-warning">Go Back</a>
+        <form action="{{ url_for('delete_lot', lot_id=lot.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this Lot?');">
+            <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem;">Delete Lot</button>
+        </form>
+    </div>
 </header>
 <main>
     <div class="container">
@@ -28,7 +34,7 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <input type="text" id="locationName" name="locationName" placeholder="City">
+                    <input type="text" id="locationName" name="locationName" placeholder=" Change City">
                 </div>
                 
                 <div class="current-value">
@@ -41,7 +47,7 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <input type="text" id="address" name="address" placeholder="Address">
+                    <input type="text" id="address" name="address" placeholder="Change Address">
                 </div>
                 
                 <div class="current-value">
@@ -54,7 +60,7 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <input type="number" id="pincode" name="pincode" placeholder="Pincode">
+                    <input type="number" id="pincode" name="pincode" placeholder="Change Pincode">
                 </div>
                 
                 <div class="current-value">
@@ -67,7 +73,7 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <input type="number" id="parklitecount" name="parkLiteCount" placeholder="ParkLite Count">
+                    <input type="number" id="parklitecount" name="parkLiteCount" placeholder="Change ParkLite Count">
                 </div>
                 
                 <div class="current-value">
@@ -80,7 +86,7 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <input type="number" id="parksmartcount" name="parkSmartCount" placeholder="ParkSmart Count">
+                    <input type="number" id="parksmartcount" name="parkSmartCount" placeholder="Change ParkSmart Count">
                 </div>
                 
                 <div class="current-value">
@@ -93,13 +99,10 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <input type="number" id="parkprocount" name="parkProCount" placeholder="ParkPro Count">
+                    <input type="number" id="parkprocount" name="parkProCount" placeholder="Change ParkPro Count">
                 </div>
+                <button type="submit" class="btn btn-success" style="padding: 0.5rem 1rem;">Update</button>
                 
-                <div class="controls">
-                    <button type="submit" class="btn btn-success" style="padding: 0.5rem 1rem;">Update</button>
-                    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-warning" style="padding: 0.5rem 1rem;">Go Back</a>
-                </div>
             </form>
         </div>
     </div>

@@ -231,6 +231,18 @@ def update_lot(lot_id):
         db.session.rollback()
         return redirect(url_for('update_lot', lot_id=lot_id))
 
+@app.route('/delete/lot/<int:lot_id>', methods=['POST'])
+@admin_required
+def delete_lot(lot_id):
+    lot = ParkingLot.query.get_or_404(lot_id)
+    ParkingSpot.query.filter_by(lot_id=lot_id).delete()
+    
+    db.session.delete(lot)
+    db.session.commit()
+    
+    return redirect(url_for('admin_dashboard'))
+
+
 @app.route('/admin/doubts')
 @admin_required
 def doubt_page():

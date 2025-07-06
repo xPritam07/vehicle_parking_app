@@ -30,11 +30,16 @@ body {
 .header-content {
     background-color: var(--background-color);
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     position: relative;
     width: 100%;
     min-height: 90px;
+}
+
+.control{
+    display: flex;
+    gap: 0.8rem;
 }
 
 .brand h4{
@@ -52,7 +57,7 @@ main{
 
 }
 
-form {
+.edit-lot-form {
     width: 100%;
     max-width: 600px;
     height: auto;
@@ -133,10 +138,4 @@ form {
 .form-heading h3{
     font-weight: 600;
     color: #fff;
-}
-
-.controls {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
 }
