@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session, flash
+from flask import render_template, request, redirect, url_for, session, flash, jsonify
 from models.models import db, User, ParkingLot, ParkingSpot, Reservation, Doubt
 from app import app
 from functools import wraps
@@ -114,13 +114,74 @@ def login_page():
             flash('Successful registration!', 'success')
             return redirect(url_for('login_page'))
 
-@app.route('/dashboard/admin')
+@app.route('/dashboard/admin', methods=['GET', 'POST'])
 @admin_required
 def admin_dashboard():
-    user = User.query.get(session['user_id'])
-    if 'user_id' not in session:
-        return redirect(url_for('login_page'))
-    return render_template('/after_login_part/admin_side/admin_dashboard.html', user = user)
+    if request.method == 'GET':
+        if 'user_id' not in session:
+            return redirect(url_for('login_page'))
+        user = User.query.get(session['user_id'])
+        lots = ParkingLot.query.all()
+        return render_template(
+            '/after_login_part/admin_side/admin_dashboard.html',
+            user=user,
+            lots=lots
+        )
+    else:
+        try:
+            locationName = request.form.get('locationName')
+            address = request.form.get('address')
+            pincode = request.form.get('pincode')
+            parkLitecount = int(request.form.get('parkLiteCount', 0) or 0)
+            parkSmartCount = int(request.form.get('parkSmartCount', 0) or 0)
+            parkProCount = int(request.form.get('parkProCount', 0) or 0)
+            ratings = 0
+
+            newLot = ParkingLot(
+                locationName=locationName,
+                address=address,
+                pincode=pincode,
+                parkLiteCount=parkLitecount,
+                parkSmartCount=parkSmartCount,
+                parkProCount=parkProCount,
+                ratings=ratings
+            )
+
+            db.session.add(newLot)
+            db.session.commit()
+
+            spots = []
+            for _ in range(parkLitecount):
+                spots.append(ParkingSpot(lot_id=newLot.id, type=1))
+            for _ in range(parkSmartCount):
+                spots.append(ParkingSpot(lot_id=newLot.id, type=2))
+            for _ in range(parkProCount):
+                spots.append(ParkingSpot(lot_id=newLot.id, type=3))
+
+            db.session.add_all(spots)
+            db.session.commit()
+
+            # Return JSON if requested via AJAX
+            if request.accept_mimetypes['application/json']:
+                return jsonify({
+                    'id': newLot.id,
+                    'address': newLot.address,
+                    'pincode': newLot.pincode,
+                    'parkLiteCount': newLot.parkLiteCount,
+                    'parkSmartCount': newLot.parkSmartCount,
+                    'parkProCount': newLot.parkProCount,
+                    'ratings': newLot.ratings
+                })
+
+            flash('Parking Lot added successfully.', 'success')
+            return redirect(url_for('admin_dashboard'))
+
+        except Exception as e:
+            db.session.rollback()
+            if request.accept_mimetypes['application/json']:
+                return jsonify({'error': str(e)}), 500
+            flash(f'Error adding Parking Lot: {str(e)}', 'danger')
+            return redirect(url_for('admin_dashboard'))
 
 @app.route('/admin/doubts')
 @admin_required
@@ -195,6 +256,11 @@ def delete_user(user_id):
     db.session.commit()
 
     return redirect(url_for('user_details'))
+
+@app.route('/admin/summary')
+@admin_required
+def summary_page():
+    return render_template("/after_login_part/admin_side/summary_page.html")
 
 @app.route("/dashboard/user")
 @auth_required

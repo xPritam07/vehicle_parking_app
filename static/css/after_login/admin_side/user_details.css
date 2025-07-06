@@ -138,7 +138,7 @@ body {
    
 body {
     min-height: 100vh;
-    background: url("/static/images/user_page_admin.png") center / cover;
+    background: url("/static/images/html_table.jpg") center / cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -170,7 +170,7 @@ main.table {
    }
 
    .table__header h1 {
-        color: #40b0b4;
+        color: #fff;
         font-weight: 600;
    }
    
@@ -212,6 +212,7 @@ main.table {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    flex-wrap: wrap;
    }
 
    #email{
@@ -229,6 +230,17 @@ main.table {
    
    #submitBtn:hover{
     background-color: #328a8d;
+   }
+
+   @media (max-width:750px) {
+        #email{
+            width: 3rem;
+            border-radius: 50%;
+        }
+
+        #email::placeholder{
+            color: transparent;
+        }
    }
 
    .table__body {

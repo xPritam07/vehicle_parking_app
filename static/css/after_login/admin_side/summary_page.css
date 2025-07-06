@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+    --primary-color: #6366f1;
+    --accent-color: #3f83f8;
+    --text-color: #333;
+    --link-color: #fff;
+    --background-color: #40b0b4;
+    --light-grey: #f0f0f0;
+    --grey: #808080;
+    --dark-grey: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    text-decoration: none;
+}
+
+body {
+    height: 100vh;
+    text-align: center;
+}
+
+/* ===== HEADER ===== */
+.header-content {
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    min-height: 90px;
+    width: 100%;
+}
+
+button img {
+    height: 2rem;
+}
+
+.welcome-note h5 {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--link-color);
+}
+
+/* Hide welcome note on smaller screens */
+@media screen and (max-width: 992px) {
+    .welcome-note {
+        display: none;
+    }
+}
+
+.brand h4 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--link-color);
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+}
+
+/* Wrap nav links in a container for responsive toggle */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--link-color);
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+/* Hide nav links and stack in dropdown style on small screens */
+@media screen and (max-width: 668px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: var(--background-color);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: right;
+        padding: 1rem;
+        z-index: 10;
+    }
+
+    .nav-links.show {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 6rem;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 0.5rem 0;
+    }
+}
+
+/*No Hover effect for logout button */
+#btn-logout:hover {
+    background-color: red;
+}
+
+/* ===== MENU ICON ===== */
+.menu-icon {
+    border: none;
+    background-color: var(--background-color);
+    display: inline-block;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/* Hide menu icon on larger screens */
+@media screen and (min-width: 668px) {
+    .menu-icon {
+        display: none;
+    }
+}
+
+
+canvas {
+    width: 50% !important;
+    max-width: 800px;
+    height: 400px !important;
+    margin: auto;
+}
