@@ -127,61 +127,72 @@ def admin_dashboard():
             user=user,
             lots=lots
         )
-    else:
-        try:
-            locationName = request.form.get('locationName')
-            address = request.form.get('address')
-            pincode = request.form.get('pincode')
-            parkLitecount = int(request.form.get('parkLiteCount', 0) or 0)
-            parkSmartCount = int(request.form.get('parkSmartCount', 0) or 0)
-            parkProCount = int(request.form.get('parkProCount', 0) or 0)
-            ratings = 0
 
-            newLot = ParkingLot(
-                locationName=locationName,
-                address=address,
-                pincode=pincode,
-                parkLiteCount=parkLitecount,
-                parkSmartCount=parkSmartCount,
-                parkProCount=parkProCount,
-                ratings=ratings
-            )
+    elif request.method == 'POST':
+        if request.form['form_type'] == 'add_lot':
+            try:
+                locationName = request.form.get('locationName')
+                address = request.form.get('address')
+                pincode = request.form.get('pincode')
+                parkLitecount = int(request.form.get('parkLiteCount', 0) or 0)
+                parkSmartCount = int(request.form.get('parkSmartCount', 0) or 0)
+                parkProCount = int(request.form.get('parkProCount', 0) or 0)
+                ratings = 0
 
-            db.session.add(newLot)
-            db.session.commit()
+                newLot = ParkingLot(
+                    locationName=locationName,
+                    address=address,
+                    pincode=pincode,
+                    parkLiteCount=parkLitecount,
+                    parkSmartCount=parkSmartCount,
+                    parkProCount=parkProCount,
+                    ratings=ratings
+                )
 
-            spots = []
-            for _ in range(parkLitecount):
-                spots.append(ParkingSpot(lot_id=newLot.id, type=1))
-            for _ in range(parkSmartCount):
-                spots.append(ParkingSpot(lot_id=newLot.id, type=2))
-            for _ in range(parkProCount):
-                spots.append(ParkingSpot(lot_id=newLot.id, type=3))
+                db.session.add(newLot)
+                db.session.commit()
 
-            db.session.add_all(spots)
-            db.session.commit()
+                spots = []
+                for _ in range(parkLitecount):
+                    spots.append(ParkingSpot(lot_id=newLot.id, type=1))
+                for _ in range(parkSmartCount):
+                    spots.append(ParkingSpot(lot_id=newLot.id, type=2))
+                for _ in range(parkProCount):
+                    spots.append(ParkingSpot(lot_id=newLot.id, type=3))
 
-            # Return JSON if requested via AJAX
-            if request.accept_mimetypes['application/json']:
-                return jsonify({
-                    'id': newLot.id,
-                    'address': newLot.address,
-                    'pincode': newLot.pincode,
-                    'parkLiteCount': newLot.parkLiteCount,
-                    'parkSmartCount': newLot.parkSmartCount,
-                    'parkProCount': newLot.parkProCount,
-                    'ratings': newLot.ratings
-                })
+                db.session.add_all(spots)
+                db.session.commit()
 
-            flash('Parking Lot added successfully.', 'success')
-            return redirect(url_for('admin_dashboard'))
+                if request.accept_mimetypes['application/json']:
+                    return jsonify({
+                        'id': newLot.id,
+                        'address': newLot.address,
+                        'pincode': newLot.pincode,
+                        'parkLiteCount': newLot.parkLiteCount,
+                        'parkSmartCount': newLot.parkSmartCount,
+                        'parkProCount': newLot.parkProCount,
+                        'ratings': newLot.ratings
+                    })
 
-        except Exception as e:
-            db.session.rollback()
-            if request.accept_mimetypes['application/json']:
-                return jsonify({'error': str(e)}), 500
-            flash(f'Error adding Parking Lot: {str(e)}', 'danger')
-            return redirect(url_for('admin_dashboard'))
+                flash('Parking Lot added successfully.', 'success')
+                return redirect(url_for('admin_dashboard'))
+
+            except Exception as e:
+                db.session.rollback()
+                if request.accept_mimetypes['application/json']:
+                    return jsonify({'error': str(e)}), 500
+                flash(f'Error adding Parking Lot: {str(e)}', 'danger')
+                return redirect(url_for('admin_dashboard'))
+
+        elif request.form['form_type'] == 'update-lot':
+            id = request.form.get('id')
+            lot = ParkingLot.query.get_or_404(id)
+            return redirect(url_for('update_lot', lot_id=lot.id))
+
+@app.route('/update/lot/<int:lot_id>')
+def update_lot(lot_id):
+    lot = ParkingLot.query.get_or_404(lot_id)
+    return render_template('/after_login_part/admin_side/search_lot.html', lot=lot)
 
 @app.route('/admin/doubts')
 @admin_required
