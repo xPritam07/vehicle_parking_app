@@ -94,7 +94,7 @@ def login_page():
             if user.is_admin:
                 return redirect(url_for('admin_dashboard'))
             else:
-                return redirect(url_for('user_dashboard'))
+                return redirect(url_for('city_selection'))
         
         elif form_type == 'register':
             fullName = request.form.get('fullName')
@@ -324,11 +324,53 @@ def delete_user(user_id):
 def summary_page():
     return render_template("/after_login_part/admin_side/summary_page.html")
 
-@app.route("/dashboard/user")
+@app.route("/city", methods=['GET','POST'])
+@auth_required
+def city_selection():
+    if request.method == 'GET':
+        user = User.query.get(session['user_id'])
+        return render_template('/after_login_part/user_side/users_after_login.html', user=user)
+    else:
+        city = request.form.get('city')
+        session['selected_city'] = city
+        return redirect(url_for('select_parkinglot', city = city))
+
+@app.route('/select/parkinglot')
+@auth_required
+def select_parkinglot():
+    city = session.get('selected_city')
+    lot_list = ParkingLot.query.filter_by(locationName=city).all()
+    return render_template('/after_login_part/user_side/lot_selction_list.html', lots=lot_list)
+
+@app.route('/dashboard/user')
 @auth_required
 def user_dashboard():
+    if 'user_id' not in session:
+        return redirect(url_for('login_page'))
     user = User.query.get(session['user_id'])
-    return render_template('/after_login_part/user_side/user_dashboard.html', user=user)
+    city = session.get('selected_city')
+    return render_template('/after_login_part/user_side/user_dashboard.html', user=user, city=city)
+
+@app.route('/user/edit/profile', methods = ["GET", "POST"])
+@auth_required
+def edit_user_profile():
+    if request.method == "GET":
+        return render_template("/after_login_part/user_side/edit_profile_user.html")
+    else:
+        name = request.form.get('fullName')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        passhash = generate_password_hash(password, method='pbkdf2:sha256')
+
+        user = User.query.get(session['user_id'])
+
+        user.fullName = name
+        user.emailId = email
+        user.passhash = passhash
+
+        db.session.commit()
+
+        return redirect(url_for('user_dashboard'))
 
 @app.route('/logout')
 def logout():

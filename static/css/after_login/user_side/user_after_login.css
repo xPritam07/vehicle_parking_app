@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+    --primary-color: #6366f1;
+    --accent-color: #3f83f8;
+    --text-color: #333;
+    --link-color: #fff;
+    --background-color: rgb(189, 235, 189);
+    --light-grey: #f0f0f0;
+    --grey: #808080;
+    --dark-grey: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    text-decoration: none;
+}
+
+body{
+    background-color: var(--light-grey);
+}
+
+header{
+    margin-top: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading-app h1{
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgb(7, 156, 7);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-shape-divider-top-1752734362 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1752734362 svg {
+    position: relative;
+    display: block;
+    width: calc(189% + 1.3px);
+    height: 221px;
+}
+
+.custom-shape-divider-top-1752734362 .shape-fill {
+    fill: #23C514;
+}
+
+.form-heading h2{
+    color: rgb(7, 156, 7);
+    font-size: 1.2rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-shape-divider-bottom-1752734412 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1752734412 svg {
+    position: relative;
+    display: block;
+    width: calc(189% + 1.3px);
+    height: 221px;
+}
+
+.custom-shape-divider-bottom-1752734412 .shape-fill {
+    fill: #23C514;
+}
+
+.city-form input{
+    height: 3rem;
+    width: 15rem;
+    margin-top: 1rem;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#city-submit{
+    background-color: rgb(53, 202, 53);
+    color: #fff;
+}

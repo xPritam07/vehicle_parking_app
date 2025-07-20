@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+    --primary-color: #6366f1;
+    --accent-color: #3f83f8;
+    --text-color: #333;
+    --link-color: #fff;
+    --background-color: rgb(189, 235, 189);
+    --light-grey: #f0f0f0;
+    --grey: #808080;
+    --dark-grey: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading-app h1{
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgb(7, 156, 7);
+}
+
+body {
+    min-height: 100vh;
+    background-color: rgb(189, 235, 189);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+        padding: 1rem;
+        height: auto;
+    }
+}
+
+
+form {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    padding: 4rem;
+    margin: 10vh auto;
+
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.input-field {
+    max-width: 400px;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+}
+  
+.input-field div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+  
+.input-field input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+}
+
+.form-heading h3{
+    font-weight: 600;
+    color: #000;
+}
+
+#submitbtn{
+    margin-top: 0.5rem;
+}
+
+#backbtn{
+    margin-top: 0.5rem;
+}

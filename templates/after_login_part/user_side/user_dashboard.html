@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/static/css/after_login/user_side/user_dashboard.css">
+{% endblock %}
+
+{% block title %}
+    Lot Booking
+{% endblock %}
+
+{% block content %}
+    <header>
+        <div class="page-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-dark px-3">
+            <!-- Parent container inside nav -->
+                <div class="container-fluid d-flex align-items-center justify-content-between">
+        
+                    <!-- Brand (left side) -->
+                    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home_page') }}">
+                        <div class="navbar-logo">
+                            ParkoU
+                            <i class="fa-solid fa-location-dot me-2"></i>
+                        </div>
+                    </a>
+                
+                    <!-- Toggler button for small screens -->
+                    <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                
+                    <!-- Collapsible nav content -->
+                    <div class="collapse navbar-collapse" id="navOptions">
+                        <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
+                            <li class="nav-item"><a href="{{ url_for('select_parkinglot', city=city) }}" class="nav-link">Book Parkou</a></li>
+                            <li class="nav-item"><a href="{{ url_for('city_selection') }}" class="nav-link">Change City</a></li>
+                            <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="top-container">
+                <div class="left-top">
+                    <div class="profile-image">
+                        <img src="/static/images/user-svgrepo-com.svg" id="profile-image-demo" alt="">
+                    </div>
+                    {% if user %}
+                        <h1>{{ user.fullName }}</h1>
+                        <p><strong>Email:</strong> {{ user.emailId }}</p>
+                        <p><strong>Registered On:</strong> {{ user.registered_on.strftime('%Y-%m-%d %H:%M') }}</p>
+                    {% else %}
+                        <h2>No user found with that email.</h2>
+                    {% endif %}
+                    <div class="controls">
+                        <a href="{{ url_for('edit_user_profile') }}">
+                            <button class="btn btn-warning">Edit Profile</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="right-top">
+                    <div class="cards-container">
+                        <div class="cards">
+                            <div class="card-head">
+                                Lite Count
+                            </div>
+                            <div class="card-count">
+                                000
+                            </div>
+                        </div>
+                        <div class="cards">
+                            <div class="card-head">Smart Count</div>
+                            <div class="card-count">000</div>
+                        </div>
+                        <div class="cards">
+                            <div class="card-head">Pro Count</div>
+                            <div class="card-count">000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-container table" id="customers_table">
+                <section class="table__header">
+                    <h1>Reservation Info</h1>
+                </section>
+                <section class="table__body">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th> Spot ID </th>
+                                <th> Parking Timestamp </th>
+                                <th> Leaving Timestamp </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            {% if not user.is_admin %}
+                                <tr>
+                                <td> {{ user.fullName }} </td>
+                                <td> {{ user.emailId }} </td>
+                                <td>
+                                    <div class="msg-doubt">
+                                        <div class="msg-data">
+                                            {{ user.registered_on }} 
+                                        </div> 
+                                        <div class="msg-control">
+                                            <a href="{{ url_for('admin_user_info') }}?email={{ user.emailId }}">
+                                                <button type="button">
+                                                    <i class="fa-solid fa-reply"></i>
+                                                </button>
+                                            </a>                                    
+                                            <form action="#" method="POST" onsubmit="return confirm('Are you sure you want to delete this doubt?');">
+                                                <button type="submit">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            {% endif %}
+                            {% else %}
+                                <tr>
+                                <td colspan="3"> No Users found </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>  
+    </main>
+
+    <script src="/static/js/after_login_js/lot_selection.js"></script>
+{% endblock %}
