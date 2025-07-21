@@ -104,5 +104,11 @@ form{
 
 #city-submit{
     background-color: rgb(53, 202, 53);
-    color: #fff;
+    color: #000;
+    font-weight: 600;
+}
+
+input::placeholder {
+    color: #000;
+    font-weight: 600;
 }

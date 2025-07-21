@@ -60,12 +60,12 @@
                                 </div> 
                                 <div class="msg-control">
                                     <a href="{{ url_for('doubt_reply', doubt_id=doubt.id) }}">
-                                        <button type="button">
+                                        <button type="button" title="Reply Doubt">
                                             <i class="fa-solid fa-reply"></i>
                                         </button>
                                     </a>                                    
                                     <form action="{{ url_for('delete_doubt', doubt_id=doubt.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this doubt?');">
-                                        <button type="submit">
+                                        <button type="submit" title="Delete Doubt">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>

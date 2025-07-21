@@ -242,7 +242,6 @@ def delete_lot(lot_id):
     
     return redirect(url_for('admin_dashboard'))
 
-
 @app.route('/admin/doubts')
 @admin_required
 def doubt_page():
@@ -263,7 +262,6 @@ def delete_doubt(doubt_id):
 @admin_required
 def doubt_reply(doubt_id):
     doubt = Doubt.query.get_or_404(doubt_id)
-
     return render_template("/after_login_part/admin_side/mail_page.html", doubt = doubt)
 
 @app.route('/back')

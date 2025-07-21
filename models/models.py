@@ -45,7 +45,7 @@ class ParkingLot(db.Model):
     parkLiteCount = db.Column(db.Integer)
     parkSmartCount = db.Column(db.Integer)
     parkProCount = db.Column(db.Integer)
-    ratings = db.Column(db.Integer)
+    ratings = db.Column(db.Integer, default = 0)
 
     parkingspot = db.relationship('ParkingSpot', cascade = "all, delete", passive_deletes = True, back_populates = 'parkinglot')
 

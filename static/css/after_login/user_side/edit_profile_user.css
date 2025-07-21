@@ -59,7 +59,7 @@ form {
     margin: 10vh auto;
 
     background-color: #fff5;
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(9px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
 
@@ -101,7 +101,7 @@ form {
 }
   
 .input-field input::placeholder {
-    color: #aaa;
+    color: #000;
     font-weight: 500;
 }
 
