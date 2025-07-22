@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+    --primary-color: #6366f1;
+    --accent-color: #3f83f8;
+    --text-color: #333;
+    --link-color: #fff;
+    --background-color: rgb(189, 235, 189);
+    --light-grey: #f0f0f0;
+    --grey: #808080;
+    --dark-grey: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    text-decoration: none;
+}
+
+body{
+    height: 35rem;
+    background-color: rgb(189, 235, 189);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #1b5e20;
+}
+
+.navbar-brand {
+    margin: 0.8vw 0 0 10vw;
+}
+
+#navOptions{
+    margin: 0 5vw 0 0;
+}
+
+.highlight-title {
+    color: #1C651B;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.highlight-title:hover {
+    text-shadow: 5px 5px 8px rgba(0, 100, 0, 0.5);
+    transform: scale(1.02);
+}
+
+.custom-homepage-buttons {
+    font-size: 1.2rem;
+    color: green;
+    font-weight: 600;
+}
+
+.custom-homepage-buttons:hover{
+    color: #fff !important;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    text-shadow: 2px 2px 8px rgb(25, 83, 10);
+    transform: scale(1.1);
+}
+
+.toggler-shadow{
+    background-color: #1C651B;
+}
+
+.toggler-shadow:hover{
+    box-shadow: 5px 5px 10px rgba(11, 49, 11, 0.6);
+}
+
+.visual-spot {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.visual-spot.free {
+    background-color: #4caf50;
+}
+
+.visual-spot.occupied {
+    background-color: #c62828; 
+}
+
+.visual-spot:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 3px 3px 10px rgba(0, 50, 0, 0.2);
+}
+
+.spot-number {
+    font-size: 13px;
+    font-weight: 600;
+}

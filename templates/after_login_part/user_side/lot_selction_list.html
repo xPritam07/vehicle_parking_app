@@ -11,10 +11,8 @@
     <header>
         <div class="page-wrapper">
             <nav class="navbar navbar-expand-lg navbar-dark px-3">
-            <!-- Parent container inside nav -->
                 <div class="container-fluid d-flex align-items-center justify-content-between">
         
-                    <!-- Brand (left side) -->
                     <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home_page') }}">
                         <div class="navbar-logo">
                             ParkoU
@@ -22,16 +20,14 @@
                         </div>
                     </a>
                 
-                    <!-- Toggler button for small screens -->
                     <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                 
-                    <!-- Collapsible nav content -->
                     <div class="collapse navbar-collapse" id="navOptions">
                         <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
-                            <li class="nav-item"><a href="{{ url_for('user_dashboard') }}" class="nav-link">Dashboard</a></li>
                             <li class="nav-item"><a href="{{ url_for('city_selection', user = user) }}" class="nav-link">Change City</a></li>
+                            <li class="nav-item"><a href="{{ url_for('user_dashboard') }}" class="nav-link">Dashboard</a></li>
                             <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
                         </ul>
                     </div>
@@ -65,7 +61,12 @@
                                         <div class="ratings">
                                             <div class="ratings-lot">{{ lot.ratings }}</div>
                                             <div class="lot-availability">
-                                                <a href="#">
+                                                <form onsubmit="getDirections(event)" data-address="{{ lot.address }}">
+                                                    <button type="submit" title="Get Direction">
+                                                        <i class="fa-solid fa-diamond-turn-right"></i>
+                                                    </button>
+                                                </form>                                                
+                                                <a href="{{ url_for('book_parkou', lot_id = lot.id) }}">
                                                     <button type="button" title="Check Availability">
                                                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                                     </button>
@@ -87,4 +88,5 @@
     </main>
 
     <script src="/static/js/after_login_js/lot_selection.js"></script>
+    <script src="/static/js/after_login_js/map_page.js"></script>
 {% endblock %}

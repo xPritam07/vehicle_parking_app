@@ -3,7 +3,9 @@ from models.models import db, User, ParkingLot, ParkingSpot, Reservation, Doubt
 from app import app
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
+current_timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
 
 def auth_required(func):
@@ -369,6 +371,82 @@ def edit_user_profile():
         db.session.commit()
 
         return redirect(url_for('user_dashboard'))
+
+@app.route('/book/parkou/<int:lot_id>', methods=['GET', 'POST'])
+@auth_required
+def book_parkou(lot_id):
+    if request.method == 'GET':
+        lot = ParkingLot.query.get(lot_id)
+        spots = ParkingSpot.query.filter(ParkingSpot.lot_id == lot_id).all()
+        total_lite = sum(1 for spot in spots if spot.type == 1)
+        total_smart = sum(1 for spot in spots if spot.type == 2)
+        total_pro = sum(1 for spot in spots if spot.type == 3)
+        available_lite = sum(1 for spot in spots if not spot.occupied and (spot.type == 1))
+        available_smart = sum(1 for spot in spots if not spot.occupied and (spot.type == 2))
+        available_pro = sum(1 for spot in spots if not spot.occupied and (spot.type == 3))
+        return render_template('/after_login_part/user_side/booking_page.html',
+                                lot = lot, 
+                                spots = spots,
+                                total_lite = total_lite,
+                                total_smart = total_smart,
+                                total_pro = total_pro,
+                                available_lite = available_lite,
+                                available_smart = available_smart,
+                                available_pro = available_pro)
+    if request.method == 'POST':
+        if request.form['form_type'] == 'park_lite':
+            spot_id = request.form.get('spot_id')
+            timestamp = request.form.get('timestamp')
+            user_id = session['user_id']
+            spot = ParkingSpot.query.get(spot_id)
+
+            if spot and not spot.occupied and spot.type == 1:
+                reservation = Reservation(
+                    spotId=spot.id,
+                    userId=user_id,
+                    parkingTimestamp=timestamp,
+                    leavingTimestamp="", 
+                    parkingCost=0,
+                    ratings=None
+                )
+                spot.occupied = True
+                db.session.add(reservation)
+                db.session.commit()
+                flash('Parking Spot booked successfully!', 'success')
+            else:
+                flash('Selected parking spot is not available.', 'danger')
+            return redirect(url_for('booking_status', reservation_id=reservation.id))
+        if request.form['form_type'] == 'park_lite':
+            spot_id = request.form.get('spot_id')
+            timestamp = request.form.get('timestamp')
+            user_id = session['user_id']
+            spot = ParkingSpot.query.get(spot_id)
+
+            if spot and not spot.occupied and spot.type == 1:
+                reservation = Reservation(
+                    spotId=spot.id,
+                    userId= user_id,
+                    parkingTimestamp=timestamp,
+                    leavingTimestamp="", 
+                    parkingCost=0,
+                    ratings=None
+                )
+                spot.occupied = True
+                db.session.add(reservation)
+                db.session.commit()
+                flash('Parking Spot booked successfully!', 'success')
+            else:
+                flash('Selected parking spot is not available.', 'danger')
+            return redirect(url_for('booking_status', reservation_id=reservation.id))
+
+    return redirect(url_for('book_parkou', lot_id=lot_id))
+
+@app.route('/booking/status/<int:reservation_id>')
+@auth_required
+def booking_status(reservation_id):
+    reservation = Reservation.query.get_or_404(reservation_id)
+    return render_template('booking_status.html', reservation=reservation)
+
 
 @app.route('/logout')
 def logout():

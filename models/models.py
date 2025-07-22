@@ -54,6 +54,7 @@ class ParkingSpot(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     lot_id = db.Column(db.Integer, db.ForeignKey('parkinglot.id', ondelete = 'CASCADE'), nullable = False)
     type = db.Column(db.Integer, nullable = False)
+    occupied = db.Column(db.Boolean, default = False, nullable = False)
 
     parkinglot = db.relationship('ParkingLot', back_populates='parkingspot')
     reservation = db.relationship('Reservation', cascade = "all, delete", passive_deletes = True, back_populates = 'parkingspot')

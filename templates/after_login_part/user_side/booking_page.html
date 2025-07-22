@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/static/css/after_login/user_side/booking_page.css">
+{% endblock %}
+
+{% block title %}
+    Book Parkou
+{% endblock %}
+
+{% block content %}
+<header>
+    <div class="page-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark px-3">
+            <div class="container-fluid d-flex align-items-center justify-content-between">
+    
+                <a class="navbar-brand d-flex align-items-center" href="{{ url_for('user_dashboard') }}">
+                    <div class="navbar-logo">
+                        ParkoU
+                        <i class="fa-solid fa-location-dot me-2"></i>
+                    </div>
+                </a>
+            
+                <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navOptions">
+                    <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
+                        <li class="nav-item"><a href="{{ url_for('user_dashboard') }}" class="nav-link">Dashboard</a></li>
+                        <li class="nav-item"><a href="{{ url_for('select_parkinglot') }}" class="nav-link">Lot List</a></li>
+                        <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="container py-5">
+        <h1 class="text-center mb-5 fw-bold">Parking Spot Availability</h1>
+        <div class="row g-4">
+            <!-- Park Lite Card -->
+            <div class="col-lg-4">
+                <div class="card parking-card h-100 border-0">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h3 class="mb-0 text-center"><i class="fas fa-car me-2"></i>Park Lite</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-secondary availability-badge">Total: {{ total_lite }} Spots</span>
+                            <span class="badge bg-success availability-badge">Available: {{ available_lite }}</span>
+                            <span class="badge bg-danger availability-badge">Booked: {{ total_lite - available_lite }}</span>
+
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <div class="d-flex flex-wrap justify-content-center">
+                            {% for spot in spots %}
+                                {% if spot.type == 1 %}
+                                    {% if not spot.occupied %}
+                                    <form method="POST" action="" title="Book Park Lite">
+                                        <input type="hidden" name="form_type" value="park_lite">
+                                        <input type="hidden" name="spot_id" value="{{ spot.id }}">
+                                        <button type="submit" class="visual-spot free border-0">
+                                            <span class="spot-number">{{ spot.spot_number }}</span>
+                                        </button>
+                                    </form>
+                                    {% else %}
+                                    <div class="visual-spot occupied">
+                                        <span class="spot-number">{{ spot.spot_number }}</span>
+                                    </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Park Smart Card -->
+            <div class="col-lg-4">
+                <div class="card parking-card h-100 border-0">
+                    <div class="card-header bg-info text-white py-3">
+                        <h3 class="mb-0 text-center"><i class="fas fa-car-side me-2"></i>Park Smart</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-secondary availability-badge">Total: {{ total_smart }} Spots</span>
+                            <span class="badge bg-success availability-badge">Available: {{ available_smart }}</span>
+                            <span class="badge bg-danger availability-badge">Booked: {{ total_smart - available_smart }}</span>
+
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <div class="d-flex flex-wrap justify-content-center">
+                            {% for spot in spots %}
+                                {% if spot.type == 2 %}
+                                    {% if not spot.occupied %}
+                                    <form method="POST" action="" title="Book Park Smart">
+                                        <input type="hidden" name="form_type" value="park_smart">
+                                        <input type="hidden" name="spot_id" value="{{ spot.id }}">
+                                        <button type="submit" class="visual-spot free border-0">
+                                            <span class="spot-number">{{ spot.spot_number }}</span>
+                                        </button>
+                                    </form>
+                                    {% else %}
+                                    <div class="visual-spot occupied">
+                                        <span class="spot-number">{{ spot.spot_number }}</span>
+                                    </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Park Pro Card -->
+            <div class="col-lg-4">
+                <div class="card parking-card h-100 border-0">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h3 class="mb-0 text-center"><i class="fas fa-car-alt me-2"></i>Park Pro</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-secondary availability-badge">Total: {{ total_pro }} Spots</span>
+                            <span class="badge bg-success availability-badge">Available: {{ available_pro }}</span>
+                            <span class="badge bg-danger availability-badge">Booked: {{ total_pro - available_pro }}</span>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <div class="d-flex flex-wrap justify-content-center">
+                            {% for spot in spots %}
+                                {% if spot.type == 3 %}
+                                    {% if not spot.occupied %}
+                                    <form method="POST" action="#" title="Reserve Park Pro">
+                                        <input type="hidden" name="form_type" value="park_pro">
+                                        <input type="hidden" name="spot_id" value="{{ spot.id }}">
+                                        <button type="submit" class="visual-spot free border-0">
+                                            <span class="spot-number">{{ spot.spot_number }}</span>
+                                        </button>
+                                    </form>
+                                    {% else %}
+                                    <div class="visual-spot occupied">
+                                        <span class="spot-number">{{ spot.spot_number }}</span>
+                                    </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/static/js/after_login_js/booking_page.js"></script>
+{% endblock %}

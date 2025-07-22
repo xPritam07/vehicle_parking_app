@@ -148,7 +148,6 @@ button img {
 .form-container {
     flex: 1 1 25%;
     max-width: 400px;
-    margin: 2rem;
     padding: 2rem;
 }
 

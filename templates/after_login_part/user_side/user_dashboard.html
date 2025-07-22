@@ -4,17 +4,15 @@
 {% endblock %}
 
 {% block title %}
-    Lot Booking
+    User Dashboard
 {% endblock %}
 
 {% block content %}
     <header>
         <div class="page-wrapper">
             <nav class="navbar navbar-expand-lg navbar-dark px-3">
-            <!-- Parent container inside nav -->
                 <div class="container-fluid d-flex align-items-center justify-content-between">
         
-                    <!-- Brand (left side) -->
                     <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home_page') }}">
                         <div class="navbar-logo">
                             ParkoU
@@ -22,16 +20,13 @@
                         </div>
                     </a>
                 
-                    <!-- Toggler button for small screens -->
                     <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                 
-                    <!-- Collapsible nav content -->
                     <div class="collapse navbar-collapse" id="navOptions">
                         <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
                             <li class="nav-item"><a href="{{ url_for('select_parkinglot', city=city) }}" class="nav-link">Book Parkou</a></li>
-                            <li class="nav-item"><a href="{{ url_for('city_selection') }}" class="nav-link">Change City</a></li>
                             <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
                         </ul>
                     </div>
