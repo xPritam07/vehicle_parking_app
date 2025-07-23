@@ -51,7 +51,6 @@
                             <span class="badge bg-secondary availability-badge">Total: {{ total_lite }} Spots</span>
                             <span class="badge bg-success availability-badge">Available: {{ available_lite }}</span>
                             <span class="badge bg-danger availability-badge">Booked: {{ total_lite - available_lite }}</span>
-
                         </div>
                     </div>
                     <div class="text-center mb-4">
@@ -59,7 +58,7 @@
                             {% for spot in spots %}
                                 {% if spot.type == 1 %}
                                     {% if not spot.occupied %}
-                                    <form method="POST" action="" title="Book Park Lite">
+                                    <form method="POST" action="{{ url_for('book_parkou', lot_id=lot.id) }}" title="Book Park Lite" onsubmit="return confirm('Are you sure you want to book this spot?');">
                                         <input type="hidden" name="form_type" value="park_lite">
                                         <input type="hidden" name="spot_id" value="{{ spot.id }}">
                                         <button type="submit" class="visual-spot free border-0">
@@ -97,7 +96,7 @@
                             {% for spot in spots %}
                                 {% if spot.type == 2 %}
                                     {% if not spot.occupied %}
-                                    <form method="POST" action="" title="Book Park Smart">
+                                    <form method="POST" action="{{ url_for('book_parkou', lot_id=lot.id) }}" title="Book Park Smart" onsubmit="return confirm('Are you sure you want to book this spot?');">
                                         <input type="hidden" name="form_type" value="park_smart">
                                         <input type="hidden" name="spot_id" value="{{ spot.id }}">
                                         <button type="submit" class="visual-spot free border-0">
@@ -134,7 +133,7 @@
                             {% for spot in spots %}
                                 {% if spot.type == 3 %}
                                     {% if not spot.occupied %}
-                                    <form method="POST" action="#" title="Reserve Park Pro">
+                                    <form method="POST" action="{{ url_for('book_parkou', lot_id=lot.id) }}" title="Reserve Park Pro" onsubmit="return confirm('Are you sure you want to book this spot?');">
                                         <input type="hidden" name="form_type" value="park_pro">
                                         <input type="hidden" name="spot_id" value="{{ spot.id }}">
                                         <button type="submit" class="visual-spot free border-0">

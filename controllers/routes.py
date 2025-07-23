@@ -3,10 +3,13 @@ from models.models import db, User, ParkingLot, ParkingSpot, Reservation, Doubt
 from app import app
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
-from datetime import datetime
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+import time
 
-current_timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-
+timezone = ZoneInfo("Asia/Kolkata")
+def current_timestamp():
+    return datetime.now(timezone).strftime('%Y-%m-%d %H:%M:%S')
 
 def auth_required(func):
     @wraps(func)
@@ -349,7 +352,12 @@ def user_dashboard():
         return redirect(url_for('login_page'))
     user = User.query.get(session['user_id'])
     city = session.get('selected_city')
-    return render_template('/after_login_part/user_side/user_dashboard.html', user=user, city=city)
+    reservations = Reservation.query.filter_by(userId=user.id).all()
+
+    lite_count = sum(1 for reservation in reservations if reservation.parkingType == 1)
+    smart_count = sum(1 for reservation in reservations if reservation.parkingType == 2)
+    pro_count = sum(1 for reservation in reservations if reservation.parkingType == 3)
+    return render_template('/after_login_part/user_side/user_dashboard.html', user=user, city=city, reservations = reservations, lite_count=lite_count, smart_count=smart_count, pro_count=pro_count)
 
 @app.route('/user/edit/profile', methods = ["GET", "POST"])
 @auth_required
@@ -396,7 +404,7 @@ def book_parkou(lot_id):
     if request.method == 'POST':
         if request.form['form_type'] == 'park_lite':
             spot_id = request.form.get('spot_id')
-            timestamp = request.form.get('timestamp')
+            timestamp = current_timestamp()
             user_id = session['user_id']
             spot = ParkingSpot.query.get(spot_id)
 
@@ -404,6 +412,7 @@ def book_parkou(lot_id):
                 reservation = Reservation(
                     spotId=spot.id,
                     userId=user_id,
+                    parkingType = spot.type,
                     parkingTimestamp=timestamp,
                     leavingTimestamp="", 
                     parkingCost=0,
@@ -416,16 +425,17 @@ def book_parkou(lot_id):
             else:
                 flash('Selected parking spot is not available.', 'danger')
             return redirect(url_for('booking_status', reservation_id=reservation.id))
-        if request.form['form_type'] == 'park_lite':
+        if request.form['form_type'] == 'park_smart':
             spot_id = request.form.get('spot_id')
-            timestamp = request.form.get('timestamp')
+            timestamp = current_timestamp()
             user_id = session['user_id']
             spot = ParkingSpot.query.get(spot_id)
 
-            if spot and not spot.occupied and spot.type == 1:
+            if spot and not spot.occupied and spot.type == 2:
                 reservation = Reservation(
                     spotId=spot.id,
                     userId= user_id,
+                    parkingType = spot.type,
                     parkingTimestamp=timestamp,
                     leavingTimestamp="", 
                     parkingCost=0,
@@ -441,12 +451,45 @@ def book_parkou(lot_id):
 
     return redirect(url_for('book_parkou', lot_id=lot_id))
 
-@app.route('/booking/status/<int:reservation_id>')
+def calculate_parking_cost(parking_timestamp, leaving_timestamp, spot_id):
+    spot = ParkingSpot.query.get(spot_id)
+    if not spot:
+        return 0
+
+    if spot.type == 1:
+        rate_per_hour = 60
+    elif spot.type == 2:
+        rate_per_hour = 90
+    elif spot.type == 3:
+        rate_per_hour = 150
+    else:
+        return 0
+
+    parking_time = datetime.strptime(parking_timestamp, '%Y-%m-%d %H:%M:%S')
+    leaving_time = datetime.strptime(leaving_timestamp, '%Y-%m-%d %H:%M:%S')
+    duration = (leaving_time - parking_time).total_seconds() / 3600
+
+    return max(0, int(duration * rate_per_hour))
+
+@app.route('/booking/status/<int:reservation_id>', methods = ['GET', 'POST'])
 @auth_required
 def booking_status(reservation_id):
     reservation = Reservation.query.get_or_404(reservation_id)
-    return render_template('booking_status.html', reservation=reservation)
 
+    if request.method == 'GET':
+        return render_template('/after_login_part/user_side/booking_status.html', reservation=reservation)
+
+    elif request.method == 'POST':
+        if reservation:
+            leaving_timestamp = current_timestamp()
+            reservation.leavingTimestamp = leaving_timestamp
+            reservation.parkingCost = calculate_parking_cost(reservation.parkingTimestamp, leaving_timestamp, reservation.spotId)
+            reservation.ratings = request.form.get('ratings')
+            spot = ParkingSpot.query.get(reservation.spotId)
+            spot.occupied = False
+            db.session.commit()
+            
+        return redirect(url_for('user_dashboard'))
 
 @app.route('/logout')
 def logout():

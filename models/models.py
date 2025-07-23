@@ -65,6 +65,7 @@ class Reservation(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     spotId = db.Column(db.Integer, db.ForeignKey("parkingspot.id", ondelete = "CASCADE"), nullable = False)
     userId = db.Column(db.Integer, db.ForeignKey("user.id", ondelete = "CASCADE"),  nullable = False)
+    parkingType = db.Column(db.Integer, nullable = False)
     parkingTimestamp = db.Column(db.String(128))
     leavingTimestamp = db.Column(db.String(128))
     parkingCost = db.Column(db.Integer)

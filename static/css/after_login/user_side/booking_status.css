@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+    --primary-color: #6366f1;
+    --accent-color: #3f83f8;
+    --text-color: #333;
+    --link-color: #fff;
+    --background-color: rgb(189, 235, 189);
+    --light-grey: #f0f0f0;
+    --grey: #808080;
+    --dark-grey: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    text-decoration: none;
+}
+
+body{
+    height: 35rem;
+    background-color: rgb(189, 235, 189);
+}
+
+.brand-heading {
+    margin: 2vw auto;
+    color: #1C651B;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+}
+
+
+
+.brand-heading h1{
+    color: #1C651B;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.brand-heading:hover {
+    text-shadow: 5px 5px 8px rgba(0, 100, 0, 0.5);
+    transform: scale(1.02);
+}

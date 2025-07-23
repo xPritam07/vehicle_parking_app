@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/css/after_login/user_side/booking_status.css">
+{% endblock %}
+
+{% block title %}
+    Booking Status
+{% endblock %}
+
+{% block content %}
+<header>
+    <div class="brand-heading">
+        <h1>ParkoU</h1>
+        <i class="fa-solid fa-location-dot"></i>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <h4 class="text-center mb-4">Booking Status</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-success text-white text-center">
+                        <h3>Current Bookings</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="reservation-details">
+                            <p><strong>Spot ID:</strong> {{ reservation.spotId }}</p>
+                        </div>
+                        <div class="reservation-details">
+                            <p><strong>Parking Timestamp:</strong> {{ reservation.parkingTimestamp }}</p>
+                        </div>
+                        <div class="reservation-details">
+                            <form action="" method="post" onsubmit="return confirm('Are you leaving?');">
+                                <button type="submit" class="btn btn-primary">Leave & Pay</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/static/js/after_login_js/lot_selection.js"></script>
+{% endblock %}
