@@ -32,7 +32,7 @@
                             <p><strong>Parking Timestamp:</strong> {{ reservation.parkingTimestamp }}</p>
                         </div>
                         <div class="reservation-details">
-                            <form action="" method="post" onsubmit="return confirm('Are you leaving?');">
+                            <form action="{{ url_for('booking_status', reservation_id=reservation.id) }}" method="post" onsubmit="return confirm('Are you leaving?');">
                                 <button type="submit" class="btn btn-primary">Leave & Pay</button>
                             </form>
                         </div>

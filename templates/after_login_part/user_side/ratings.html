@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block stylesheet %}
+<link rel="stylesheet" href="/static/css/after_login/user_side/ratings.css">
+{% endblock %} 
+
+{% block title %}
+    Ratings
+{% endblock %}
+
+{% block content %}
+<header>
+    <div class="brand-heading">
+        <h1>ParkoU</h1>
+        <i class="fa-solid fa-location-dot"></i>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="ratings-container">
+            <h2 class="text-center mb-4">Your Bill Details</h2>
+            <div class="booking-info">
+                <h3>Your Booking Type is: {{ reservationtype }}</h3>
+            </div>
+            <div class="booking-info">
+                <h3>Your Parking Time was: {{ parking_timestamp }}</h3>
+            </div>
+            <div class="booking-info">
+                <h3>Your Leaving Time is: {{ leaving_timestamp }}</h3>
+            </div>
+            <div class="booking-info">
+                <h3>Your Parking Cost is: {{ cost }}</h3>
+            </div>
+        </div>
+        <div class="rating-form">
+            <h4>Rate Your Experience</h4>
+            <form action="{{ url_for('ratings', reservation_id=reservation.id) }}" method="post">
+                <div class="form-group">
+                    <input type="number" id="ratings" name="ratings" min="1" max="5" placeholder="1-5" required>
+                    <input type="submit" value="Submit Rating" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

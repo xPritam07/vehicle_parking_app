@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/static/css/Before_login/careers.css">
+{% endblock %}
+
+{% block title %}
+    Careers
+{% endblock %}
+
+{% block content %}
+<header>
+    <div class="page-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-dark px-3">
+    <!-- Parent container inside nav -->
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+
+            <!-- Brand (left side) -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home_page') }}">
+                <div class="navbar-logo">
+                    ParkoU
+                    <i class="fa-solid fa-location-dot me-2"></i>
+                </div>
+            </a>
+        
+            <!-- Toggler button for small screens -->
+            <button id="toggler-btn" class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navOptions">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <!-- Collapsible nav content -->
+            <div class="collapse navbar-collapse" id="navOptions">
+                <ul class="navbar-nav ms-auto d-lg-flex align-items-center" id="navbaroptions">
+                    <li class="nav-item"><a href="{{ url_for('home_page') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{{ url_for('login_page') }}" class="nav-link">Login | Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="heading">
+            <h2>Careers</h2>
+        </div>
+        <div class="image-container">
+            <div class="image">
+                <img src="/static/images/sad-but-relieved-face-svgrepo-com.svg" alt="">
+            </div>
+            <div class="content">
+                <p>Sorry, Currrently no openings at Parkou. See you soon.</p>
+            </div>
+            <div class="form-section">
+                <form action="{{ url_for('careers_page') }}" method="post">
+                    <div class="form-group">
+                        <label for="email">Subscribe to our newslater</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <input type="submit" value="Subscribe" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

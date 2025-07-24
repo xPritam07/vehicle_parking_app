@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, session, flash, jsonify
-from models.models import db, User, ParkingLot, ParkingSpot, Reservation, Doubt
+from models.models import db, User, ParkingLot, ParkingSpot, Reservation, Doubt, Newsletter
 from app import app
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -118,6 +118,42 @@ def login_page():
 
             flash('Successful registration!', 'success')
             return redirect(url_for('login_page'))
+
+@app.route('/careers', methods=['GET', 'POST'])
+def careers_page():
+    if request.method == 'GET':
+        return render_template('/Before_login_part/careers.html')
+    
+    elif request.method == 'POST':
+        email = request.form.get('email')
+
+        if not email:
+            flash('Email is required.', 'danger')
+            return redirect(url_for('careers_page'))
+        else:
+            newsletter = Newsletter(email=email)
+            db.session.add(newsletter)
+            db.session.commit()
+            flash('Thank you for subscribing to our newsletter!', 'success')
+            return redirect(url_for('careers_page'))
+
+@app.route('/affiliate', methods=['GET', 'POST'])
+def affiliate_page():
+    if request.method == 'GET':
+        return render_template('//Before_login_part/affiliate.html')
+    
+    elif request.method == 'POST':
+        email = request.form.get('email')
+
+        if not email:
+            flash('Email is required.', 'danger')
+            return redirect(url_for('careers_page'))
+        else:
+            newsletter = Newsletter(email=email)
+            db.session.add(newsletter)
+            db.session.commit()
+            flash('Thank you for subscribing to our newsletter!', 'success')
+            return redirect(url_for('affiliate_page'))
 
 @app.route('/dashboard/admin', methods=['GET', 'POST'])
 @admin_required
@@ -354,6 +390,16 @@ def user_dashboard():
     city = session.get('selected_city')
     reservations = Reservation.query.filter_by(userId=user.id).all()
 
+    for reservation in reservations:
+        if reservation.parkingType == 1:
+            reservation.parkingTypeName = "Park Lite"
+        elif reservation.parkingType == 2:
+            reservation.parkingTypeName = "Park Smart"
+        elif reservation.parkingType == 3:
+            reservation.parkingTypeName = "Park Pro"
+        else:
+            reservation.parkingTypeName = "Unknown"
+
     lite_count = sum(1 for reservation in reservations if reservation.parkingType == 1)
     smart_count = sum(1 for reservation in reservations if reservation.parkingType == 2)
     pro_count = sum(1 for reservation in reservations if reservation.parkingType == 3)
@@ -484,11 +530,35 @@ def booking_status(reservation_id):
             leaving_timestamp = current_timestamp()
             reservation.leavingTimestamp = leaving_timestamp
             reservation.parkingCost = calculate_parking_cost(reservation.parkingTimestamp, leaving_timestamp, reservation.spotId)
-            reservation.ratings = request.form.get('ratings')
+            reservation.ratings = ""
             spot = ParkingSpot.query.get(reservation.spotId)
             spot.occupied = False
             db.session.commit()
             
+        return redirect(url_for('ratings', reservation_id=reservation.id))
+
+@app.route('/ratings/<int:reservation_id>', methods=['GET', 'POST'])
+@auth_required
+def ratings(reservation_id):
+    reservation = Reservation.query.get_or_404(reservation_id)
+
+    if request.method == 'GET':
+        parking_timestamp = reservation.parkingTimestamp
+        leaving_timestamp = reservation.leavingTimestamp
+        cost = reservation.parkingCost
+        reservationtype = reservation.parkingType
+        if reservationtype == 1:
+            reservationtype = "Park Lite"
+        elif reservationtype == 2:
+            reservationtype = "Park Smart"
+        elif reservationtype == 3:
+            reservationtype = "Park Pro"
+        return render_template('/after_login_part/user_side/ratings.html', reservation=reservation, parking_timestamp=parking_timestamp, leaving_timestamp=leaving_timestamp, cost=cost, reservationtype=reservationtype)
+
+    elif request.method == 'POST':
+        ratings = request.form.get('ratings')
+        reservation.ratings = ratings
+        db.session.commit()
         return redirect(url_for('user_dashboard'))
 
 @app.route('/logout')

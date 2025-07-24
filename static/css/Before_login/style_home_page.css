@@ -480,11 +480,20 @@ footer {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
-.footer-top-list li {
-    margin-bottom: 0.5rem;
-    white-space: nowrap; /* prevents line breaks */
+.footer-card-childs a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.footer-card-childs a:hover {
+    color: #ccc;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
 }
 
 .footer-top-heading {

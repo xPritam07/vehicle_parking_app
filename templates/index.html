@@ -18,6 +18,69 @@
     {% block content %}
 
     {% endblock %}
+    <footer>
+        <div class="container-footer">
+            <div class="footer-top-container">
+                <div class="footer-card">
+                    <div class="footer-address">
+                        <h3>ParkoU</h3>
+                        <p>
+                            33 Pal Sakti street <br>
+                            Chennai, TN 603203 
+                            <br>
+                            <br>
+                            Phone: +91 7364 8836 62 <br> 
+                            Email: 23f3004460@gmail.com
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-card">
+                    <div class="footer-card-childs">
+                        <p class="footer-top-heading">Usefull Links</p>
+                        <ul class="footer-top-list">
+                            <li><a href="{{ url_for('home_page') }}">Home</a></li>
+                            <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
+                            <li><a href="{{ url_for('about_page') }}">About ParkoU</a></li>
+                            <li><a href="https://docs.google.com/document/d/1ht1TEgyeZX0J1dsCD6S0kXN68LQ1jXHEEITR-4zQqFQ/edit?usp=sharing">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-card-childs">
+                        <p class="footer-top-heading">Our Services</p>
+                        <ul class="footer-top-list">
+                            <li>Quick Parking</li>
+                            <li>Closed Roof Parking</li>
+                            <li>CCTV Coverage</li>
+                            <li>Damage Coverage</li>
+                            <li>Security</li>
+                        </ul>
+                    </div>
+                    <div class="footer-card-childs">
+                        <p class="footer-top-heading">Information</p>
+                        <ul class="footer-top-list">
+                            <li><a href="https://docs.google.com/document/d/1dbMWsBQMeItnYILBMdl0Y7VUuNTVJO1jpDPq5rfwLPA/edit?usp=sharing">Terms & Conditions</a></li>
+                            <li><a href="{{ url_for('affiliate_page') }}">Affiliate programs</a></li>
+                            <li><a href="{{ url_for('careers_page') }}">Careers</a></li>
+                            <li><a href="{{ url_for('contact_page') }}">Report Issue</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-container">
+                <div class="bottom-footer-card">
+                    <p>@ Copyright <strong>ParkoU</strong>. All Rights Reserved
+                    <br>
+                    Designed by Parkou Inc.
+                    </p>
+                </div>
+                <div class="bottom-footer-card">
+                    <a href="#" class="media-links"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="media-links"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="media-links"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="media-links"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/static/js/before_login_js/script.js"></script>
 </body>
