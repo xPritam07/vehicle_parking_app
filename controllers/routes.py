@@ -96,8 +96,10 @@ def login_page():
             session['user_id'] = user.id
 
             if user.is_admin:
+                flash("Welcome Admin!", "success")
                 return redirect(url_for('admin_dashboard'))
             else:
+                flash("You have logged in successfully!", "success")
                 return redirect(url_for('city_selection'))
         
         elif form_type == 'register':
@@ -115,7 +117,7 @@ def login_page():
             db.session.add(newUser)
             db.session.commit()
 
-            flash('Successful registration!', 'success')
+            flash('You have registered Successfully! Please login to continue', 'success')
             return redirect(url_for('login_page'))
 
 @app.route('/careers', methods=['GET', 'POST'])
@@ -560,4 +562,5 @@ def ratings(reservation_id):
 @app.route('/logout')
 def logout():
     session.pop('user_id',None)
+    flash('You have been logged out successfully.', 'success')
     return redirect(url_for('login_page'))

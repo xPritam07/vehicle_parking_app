@@ -44,6 +44,16 @@
 </div>
 </header>
 <main>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div id="flash-msg" class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
 <div class="container">
   <div class="forms-container">
     <div class="signin-signup">
@@ -61,7 +71,7 @@
         <input type="submit" value="Login" class="btn solid" />
 
       </form>
-      <form action="/login" method="POST" class="sign-up-form">
+      <form action="/login" method="POST" class="sign-up-form" onsubmit="return confirm('Are you sure you want to register?');">
         <input type="hidden" name="form-type" value="register">
         <h2 class="title">Sign up</h2>
         <div class="input-field">

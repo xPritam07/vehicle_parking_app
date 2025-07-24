@@ -43,6 +43,30 @@ main{
     align-items: center;
 }
 
+#flash-msg{
+  position: fixed;
+  top: 20px;
+  left: auto;
+  z-index: 1000;
+  max-width: 300px;
+  width: auto;
+  animation: slideFromDown 1.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes slideFromDown {
+    
+    0%{
+        opacity: 0;
+        transform: translateY(20%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .custom-shape-divider-top-1752734362 {
     position: absolute;
     top: 0;
