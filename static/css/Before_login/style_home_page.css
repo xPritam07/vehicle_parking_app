@@ -201,6 +201,7 @@ main{
     perspective: 1000px;
     animation: slideFromLeft 1.5s ease forwards;
     opacity: 0;
+    cursor: pointer;
 }
 
 @keyframes slideFromLeft {

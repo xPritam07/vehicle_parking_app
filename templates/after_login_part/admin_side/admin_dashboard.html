@@ -19,7 +19,6 @@
             <div class="nav-links">
                 <a href="{{ url_for('admin_dashboard') }}" class="nav-link">Edit Lot</a>
                 <a href="{{ url_for('user_details') }}" class="nav-link">Users</a>
-                <a href="{{ url_for('summary_page') }}" class="nav-link">Summary</a>
                 <a href="{{ url_for('doubt_page') }}" class="nav-link">Doubts</a>
                 <a href="{{ url_for('edit_admin_profile') }}" class="nav-link">Edit profile</a>
                 <a class="nav-link" href="{{ url_for('logout') }}">
@@ -42,6 +41,7 @@
                     <h2>Add Parking Lot</h2>
                     <form class="form-group" id="lot-form" method="POST" action="{{ url_for('admin_dashboard') }}">
                         <input type="hidden" name="form_type" value="add_lot">
+                        <input type="text" id="lotName" name="lotName" placeholder="Lot Name" required>
                         <input type="text" id="locationName" name="locationName" placeholder="City" required>
                         <input type="text" id="address" name="address" placeholder="Address" required>
                         <input type="number" id="pincode" name="pincode" placeholder="Pincode" required>
@@ -72,6 +72,8 @@
                         <thead>
                             <tr>
                                 <th> Lot ID </th>
+                                <th> Lot Name </th>
+                                <th> City </th>
                                 <th> Address </th>
                                 <th> Pincode </th>
                                 <th> ParkLite Count </th>
@@ -85,6 +87,8 @@
                             {% for lot in lots %}
                                 <tr>
                                     <td> {{ lot.id }} </td>
+                                    <td> {{ lot.lotName }} </td>
+                                    <td> {{ lot.locationName }} </td>
                                     <td> {{ lot.address }} </td>
                                     <td> {{ lot.pincode }} </td>
                                     <td> {{ lot.parkLiteCount }} </td>
@@ -95,7 +99,7 @@
                             {% endfor %}
                             {% else %}
                                 <tr>
-                                    <td colspan="7" style="text-align: center;">No Lot Found</td>
+                                    <td colspan="9" style="text-align: center;">No Lot Found</td>
                                 </tr>
                             {% endif %}
                         </tbody>

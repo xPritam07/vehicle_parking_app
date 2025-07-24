@@ -62,8 +62,23 @@ body{
     justify-content: center;
     align-items: center;
     gap: 6vw;
-    background-color: lightgrey;
+    background-color: rgb(223, 213, 157);
     border-radius: 10px;
+    animation: slideFromLeft 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes slideFromLeft {
+    
+    0%{
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .img-container .outer{

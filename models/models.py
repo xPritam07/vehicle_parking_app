@@ -39,6 +39,7 @@ class User(db.Model):
 class ParkingLot(db.Model):
     __tablename__ = "parkinglot"
     id = db.Column(db.Integer, primary_key = True)
+    lotName = db.Column(db.String(128), nullable = False)
     locationName = db.Column(db.String(128))
     address = db.Column(db.String(512), unique = True, nullable = False)
     pincode = db.Column(db.String(128), unique = True, nullable = False)

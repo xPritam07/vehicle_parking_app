@@ -55,8 +55,41 @@ body{
     box-shadow: 5px 5px 10px rgba(11, 49, 11, 0.6);
 }
 
+.contact-content{
+    animation: slideFromLeft 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes slideFromLeft {
+    
+    0%{
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .contactForm{
     width: 35rem;
+    animation: slideFromRight 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes slideFromRight {
+    
+    0%{
+        opacity: 0;
+        transform: translateX(50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .contact-form {

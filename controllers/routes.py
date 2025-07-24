@@ -3,9 +3,8 @@ from models.models import db, User, ParkingLot, ParkingSpot, Reservation, Doubt,
 from app import app
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
-from datetime import datetime, timedelta
+from datetime import datetime
 from zoneinfo import ZoneInfo
-import time
 
 timezone = ZoneInfo("Asia/Kolkata")
 def current_timestamp():
@@ -140,7 +139,7 @@ def careers_page():
 @app.route('/affiliate', methods=['GET', 'POST'])
 def affiliate_page():
     if request.method == 'GET':
-        return render_template('//Before_login_part/affiliate.html')
+        return render_template('/Before_login_part/affiliate.html')
     
     elif request.method == 'POST':
         email = request.form.get('email')
@@ -172,15 +171,17 @@ def admin_dashboard():
     elif request.method == 'POST':
         if request.form['form_type'] == 'add_lot':
             try:
+                lotName = request.form.get('lotName')
                 locationName = request.form.get('locationName')
                 address = request.form.get('address')
                 pincode = request.form.get('pincode')
                 parkLitecount = int(request.form.get('parkLiteCount', 0) or 0)
                 parkSmartCount = int(request.form.get('parkSmartCount', 0) or 0)
                 parkProCount = int(request.form.get('parkProCount', 0) or 0)
-                ratings = 0
+                ratings = request.form.get('ratings', None)
 
                 newLot = ParkingLot(
+                    lotName=lotName,
                     locationName=locationName,
                     address=address,
                     pincode=pincode,
@@ -357,11 +358,6 @@ def delete_user(user_id):
     db.session.commit()
 
     return redirect(url_for('user_details'))
-
-@app.route('/admin/summary')
-@admin_required
-def summary_page():
-    return render_template("/after_login_part/admin_side/summary_page.html")
 
 @app.route("/city", methods=['GET','POST'])
 @auth_required

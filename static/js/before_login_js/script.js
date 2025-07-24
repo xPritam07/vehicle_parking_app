@@ -24,4 +24,4 @@ var map = L.map('map').setView([12.820834, 80.039410], 13);
   }).addTo(map);
 
   var marker = L.marker([12.820834, 80.039410]).addTo(map);
-  marker.bindPopup("<b>Welcome!</b><br>This is your location.").openPopup();
+  marker.bindPopup("<b>ParkoU!</b>.").openPopup();

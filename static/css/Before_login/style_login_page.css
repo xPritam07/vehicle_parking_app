@@ -66,6 +66,8 @@ body {
   min-height: 80vh;
   overflow: hidden;
   box-shadow: 5px 5px 10px #1C651B;
+  animation: slideFromLeft 1.5s ease forwards;
+  opacity: 0;
 }
  
 .forms-container {
@@ -74,6 +76,19 @@ body {
   height: 100%;
   top: 0;
   left: 0;
+}
+
+@keyframes slideFromLeft {
+    
+    0%{
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
  
 .signin-signup {
