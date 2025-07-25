@@ -53,7 +53,7 @@ body {
 }
 
 .container {
-    height: 60vh;
+    height: 80vh;
     width: 70vw;
     max-height: 600px;
     max-width: 90vw;
@@ -62,7 +62,7 @@ body {
 
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
-    overflow: hidden;
+    overflow-y: auto;
 
     display: flex;
     flex-direction: column;

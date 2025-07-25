@@ -31,31 +31,37 @@
                     <a href="{{ url_for('user_details') }}">
                         <button class="btn btn-warning">Go Back</button>
                     </a>
-                    <form action="{{ url_for('delete_user', user_id = user.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this User?');">
-                        <button type="submit" class="btn btn-danger">Delete User</button>
-                    </form>
+                    {% if user %}
+                        <form action="{{ url_for('delete_user', user_id = user.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this User?');">
+                            <button type="submit" class="btn btn-danger">Delete User</button>
+                        </form>
+                    {% endif %}
                 </div>
             </div>
             <div class="right-top">
-                <div class="cards-container">
-                    <div class="cards">
-                        <div class="card-head">
-                            Lite Count
+                    <div class="cards-container">
+                        <div class="cards">
+                            <div class="card-head">
+                                Lite Count
+                            </div>
+                            <div class="card-count">
+                                {{ lite_count }}
+                            </div>
                         </div>
-                        <div class="card-count">
-                            000
+                        <div class="cards">
+                            <div class="card-head">Smart Count</div>
+                            <div class="card-count">
+                                {{ smart_count }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="cards">
-                        <div class="card-head">Smart Count</div>
-                        <div class="card-count">000</div>
-                    </div>
-                    <div class="cards">
-                        <div class="card-head">Pro Count</div>
-                        <div class="card-count">000</div>
+                        <div class="cards">
+                            <div class="card-head">Pro Count</div>
+                            <div class="card-count">
+                                {{ pro_count }}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="bottom-container table" id="customers_table">
             <section class="table__header">
@@ -64,45 +70,35 @@
             <section class="table__body">
                 <table border="1">
                     <thead>
-                        <tr>
-                            <th> Spot ID </th>
-                            <th> Parking Timestamp </th>
-                            <th> Leaving Timestamp </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                        {% if not user.is_admin %}
                             <tr>
-                            <td> {{ user.fullName }} </td>
-                            <td> {{ user.emailId }} </td>
-                            <td>
-                                <div class="msg-doubt">
-                                    <div class="msg-data">
-                                        {{ user.registered_on }} 
-                                    </div> 
-                                    <div class="msg-control">
-                                        <a href="{{ url_for('admin_user_info') }}?email={{ user.emailId }}">
-                                            <button type="button">
-                                                <i class="fa-solid fa-reply"></i>
-                                            </button>
-                                        </a>                                    
-                                        <form action="#" method="POST" onsubmit="return confirm('Are you sure you want to delete this doubt?');">
-                                            <button type="submit">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
+                                <th> Lot Name </th>
+                                <th> Spot ID </th>
+                                <th> Parking Type </th>
+                                <th> Parking Timestamp </th>
+                                <th> Leaving Timestamp </th>
+                                <th> Ratings </th>
                             </tr>
-                        {% endif %}
-                        {% else %}
-                            <tr>
-                            <td colspan="3"> No Users found </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
+                        </thead>
+                        <tbody>
+                            {% if reservations %}
+                            {% for reservation in reservations %}
+                                <tr>
+                                <td> {{ reservation.parkingspot.parkinglot.lotName }} </td>
+                                <td> {{ reservation.spotId }} </td>
+                                <td> {{ reservation.parkingTypeName }} </td>
+                                <td>
+                                    {{ reservation.parkingTimestamp }}
+                                </td>
+                                <td>{{ reservation.leavingTimestamp }}</td>
+                                <td>{{ reservation.ratings }}</td>
+                                </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                <td colspan="5"> No Reservation found </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
                 </table>
             </section>
         </div>

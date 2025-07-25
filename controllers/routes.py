@@ -46,7 +46,8 @@ def home_page():
 
         db.session.add(doubt)
         db.session.commit()
-    
+
+        flash('Your query has been submitted successfully!', 'success')
         return render_template("/Before_login_part/home_page.html")
     
 @app.route('/pricing')
@@ -66,7 +67,7 @@ def contact_page():
 
         db.session.add(doubt)
         db.session.commit()
-    
+        flash('Your query has been submitted successfully!', 'success')
         return render_template("/Before_login_part/contact.html")
 
 @app.route('/about')
@@ -300,6 +301,7 @@ def delete_doubt(doubt_id):
     db.session.delete(doubt)
     db.session.commit()
 
+    flash('Doubt deleted successfully!', 'success')
     return redirect(url_for('doubt_page'))
 
 @app.route('/admin/doubt/reply/<int:doubt_id>')
@@ -345,10 +347,29 @@ def user_details():
 def admin_user_info():
     email = request.args.get('email')
     if email:
-        user = User.query.filter_by(emailId = email).first()
+        user = User.query.filter_by(emailId=email).first()
         if user:
-            return render_template("/after_login_part/admin_side/user_info.html", user = user)
+            reservations = Reservation.query.filter_by(userId=user.id).all()
+            
+            for reservation in reservations:
+                if reservation.parkingType == 1:
+                    reservation.parkingTypeName = "Park Lite"
+                elif reservation.parkingType == 2:
+                    reservation.parkingTypeName = "Park Smart"
+                elif reservation.parkingType == 3:
+                    reservation.parkingTypeName = "Park Pro"
+                else:
+                    reservation.parkingTypeName = "Unknown"
+            
+            lite_count = sum(1 for reservation in reservations if reservation.parkingType == 1)
+            smart_count = sum(1 for reservation in reservations if reservation.parkingType == 2)
+            pro_count = sum(1 for reservation in reservations if reservation.parkingType == 3)
+
+            return render_template("/after_login_part/admin_side/user_info.html",
+                                user=user, reservations=reservations,
+                                lite_count=lite_count, smart_count=smart_count, pro_count=pro_count)
         else:
+            flash('No user found!', 'danger')
             return redirect(url_for('user_details'))
 
 @app.route('/delete/user/<int:user_id>', methods = ["POST"])
@@ -492,6 +513,29 @@ def book_parkou(lot_id):
             else:
                 flash('Selected parking spot is not available.', 'danger')
             return redirect(url_for('booking_status', reservation_id=reservation.id))
+        if request.form['form_type'] == 'park_pro':
+            spot_id = request.form.get('spot_id')
+            timestamp = current_timestamp()
+            user_id = session['user_id']
+            spot = ParkingSpot.query.get(spot_id)
+
+            if spot and not spot.occupied and spot.type == 3:
+                reservation = Reservation(
+                    spotId=spot.id,
+                    userId= user_id,
+                    parkingType = spot.type,
+                    parkingTimestamp=timestamp,
+                    leavingTimestamp="", 
+                    parkingCost=0,
+                    ratings=None
+                )
+                spot.occupied = True
+                db.session.add(reservation)
+                db.session.commit()
+                flash('Parking Spot booked successfully!', 'success')
+            else:
+                flash('Selected parking spot is not available.', 'danger')
+            return redirect(url_for('booking_status', reservation_id=reservation.id))
 
     return redirect(url_for('book_parkou', lot_id=lot_id))
 
@@ -532,7 +576,7 @@ def booking_status(reservation_id):
             spot = ParkingSpot.query.get(reservation.spotId)
             spot.occupied = False
             db.session.commit()
-            
+        flash('Thank you for choosing ParkoU!', 'success') 
         return redirect(url_for('ratings', reservation_id=reservation.id))
 
 @app.route('/ratings/<int:reservation_id>', methods=['GET', 'POST'])
@@ -557,6 +601,7 @@ def ratings(reservation_id):
         ratings = request.form.get('ratings')
         reservation.ratings = ratings
         db.session.commit()
+        flash('Thank you for your feedback!')
         return redirect(url_for('user_dashboard'))
 
 @app.route('/logout')

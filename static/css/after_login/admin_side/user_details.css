@@ -110,6 +110,31 @@ body {
     background-color: red;
 }
 
+#flash-msg{
+  position: fixed;
+  top: 50px;
+  left: 45%;
+  transform: translateX(45%);
+  z-index: 1000;
+  max-width: 300px;
+  width: auto;
+  animation: slideFromDown 1.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes slideFromDown {
+    
+    0%{
+        opacity: 0;
+        transform: translateY(20%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ===== MENU ICON ===== */
 .menu-icon {
     border: none;

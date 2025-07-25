@@ -35,6 +35,16 @@
         </div>
     </header>
     <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div id="flash-msg" class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
         <div class="container">
             <div class="top-container">
                 <div class="left-top">
@@ -87,7 +97,7 @@
                     <table border="1">
                         <thead>
                             <tr>
-                                <th> Spot ID </th>
+                                <th> Lot Name </th>
                                 <th> Parking Type </th>
                                 <th> Parking Timestamp </th>
                                 <th> Leaving Timestamp </th>
@@ -98,7 +108,7 @@
                             {% if reservations %}
                             {% for reservation in reservations %}
                                 <tr>
-                                <td> {{ reservation.spotId }} </td>
+                                <td> {{ reservation.parkingspot.parkinglot.lotName }} </td>
                                 <td> {{ reservation.parkingTypeName }} </td>
                                 <td>
                                     {{ reservation.parkingTimestamp }}
