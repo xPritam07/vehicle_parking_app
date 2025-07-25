@@ -1,7 +1,7 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from app import app
-from sqlalchemy import event
+from sqlalchemy import event, Numeric
 from sqlalchemy.engine import Engine
 from datetime import datetime
 
@@ -46,7 +46,7 @@ class ParkingLot(db.Model):
     parkLiteCount = db.Column(db.Integer)
     parkSmartCount = db.Column(db.Integer)
     parkProCount = db.Column(db.Integer)
-    ratings = db.Column(db.Integer, default = 0)
+    ratings = db.Column(db.Numeric(3,1), default = 0.0, nullable = False)
 
     parkingspot = db.relationship('ParkingSpot', cascade = "all, delete", passive_deletes = True, back_populates = 'parkinglot')
 

@@ -244,6 +244,7 @@ def update_lot(lot_id):
 
     # POST request: update only the provided fields
     try:
+        lotName = request.form.get('lotName')
         locationName = request.form.get('locationName')
         address = request.form.get('address')
         pincode = request.form.get('pincode')
@@ -254,6 +255,8 @@ def update_lot(lot_id):
         parkProCount_raw = request.form.get('parkProCount')
 
         # Update only if provided
+        if lotName:
+            lot.lotName = lotName
         if locationName:
             lot.locationName = locationName
         if address:
@@ -270,6 +273,7 @@ def update_lot(lot_id):
 
         # Commit updates
         db.session.commit()
+        flash('Parking Lot updated successfully.', 'success')
         return redirect(url_for('admin_dashboard'))
 
     except Exception as e:
@@ -285,6 +289,7 @@ def delete_lot(lot_id):
     db.session.delete(lot)
     db.session.commit()
     
+    flash('Parking Lot deleted successfully!', 'success')
     return redirect(url_for('admin_dashboard'))
 
 @app.route('/admin/doubts')

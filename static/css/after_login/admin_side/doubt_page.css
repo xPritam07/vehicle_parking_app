@@ -149,7 +149,8 @@ body {
 #flash-msg{
   position: fixed;
   top: 20px;
-  left: auto;
+  left: 45%;
+  transform: translateX(45%);
   z-index: 1000;
   max-width: 300px;
   width: auto;

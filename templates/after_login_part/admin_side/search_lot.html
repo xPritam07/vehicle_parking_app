@@ -26,6 +26,18 @@
             <form action="{{ url_for('update_lot', lot_id=lot.id) }}" method="POST" class="edit-lot-form" onsubmit="return confirm('Are you sure you want to update this Lot?');">
                 <div class="current-value">
                     <div class="feature">
+                        <p>Name</p>
+                    </div>
+                    <p class="marker">:</p>
+                    <div class="value">
+                        <p>{{ lot.lotName }}</p>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="lotName" name="lotName" placeholder="Change Lot Name"">
+                </div>
+                <div class="current-value">
+                    <div class="feature">
                         <p>City</p>
                     </div>
                     <p class="marker">:</p>
