@@ -565,7 +565,15 @@ def booking_status(reservation_id):
     reservation = Reservation.query.get_or_404(reservation_id)
 
     if request.method == 'GET':
-        return render_template('/after_login_part/user_side/booking_status.html', reservation=reservation)
+        if reservation.parkingType == 1:
+                reservation.parkingTypeName = "Park Lite"
+        elif reservation.parkingType == 2:
+            reservation.parkingTypeName = "Park Smart"
+        elif reservation.parkingType == 3:
+            reservation.parkingTypeName = "Park Pro"
+        else:
+            reservation.parkingTypeName = "Unknown"
+        return render_template('/after_login_part/user_side/booking_status.html', reservation=reservation )
 
     elif request.method == 'POST':
         if reservation:
@@ -600,6 +608,23 @@ def ratings(reservation_id):
     elif request.method == 'POST':
         ratings = request.form.get('ratings')
         reservation.ratings = ratings
+
+        spot = reservation.parkingspot
+        lot = spot.parkinglot
+
+        spot_ids = [s.id for s in lot.parkingspot]
+
+        rated_reservations = Reservation.query.filter(
+            Reservation.spotId.in_(spot_ids),
+            Reservation.ratings.isnot(None)
+        ).all()
+
+        if rated_reservations:
+            total_ratings = sum(int(r.ratings) for r in rated_reservations)
+            lot.ratings = int(total_ratings / len(rated_reservations))
+        else:
+            lot.ratings = 0
+
         db.session.commit()
         flash('Thank you for your feedback!')
         return redirect(url_for('user_dashboard'))

@@ -27,25 +27,29 @@
         {% endif %}
     {% endwith %}
     <div class="container">
-        <h4 class="text-center mb-4">Booking Status</h4>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header bg-success text-white text-center">
-                        <h3>Current Bookings</h3>
+        <h4 id="page-heading">Booking Status</h4>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Current Booking Details</h3>
+                </div>
+                <div class="card-body">
+                    <div class="reservation-details">
+                        <p><strong>Lot Name:</strong> {{ reservation.parkingspot.parkinglot.lotName }}</p>
                     </div>
-                    <div class="card-body">
-                        <div class="reservation-details">
-                            <p><strong>Spot ID:</strong> {{ reservation.spotId }}</p>
-                        </div>
-                        <div class="reservation-details">
-                            <p><strong>Parking Timestamp:</strong> {{ reservation.parkingTimestamp }}</p>
-                        </div>
-                        <div class="reservation-details">
-                            <form action="{{ url_for('booking_status', reservation_id=reservation.id) }}" method="post" onsubmit="return confirm('Are you leaving?');">
-                                <button type="submit" class="btn btn-primary">Leave & Pay</button>
-                            </form>
-                        </div>
+                    <div class="reservation-details">
+                        <p><strong>Parking Type:</strong> {{ reservation.parkingTypeName }}</p>
+                    </div>
+                    <div class="reservation-details">
+                        <p><strong>Spot ID:</strong> {{ reservation.spotId }}</p>
+                    </div>
+                    <div class="reservation-details">
+                        <p><strong>Parking Timestamp:</strong> {{ reservation.parkingTimestamp }}</p>
+                    </div>
+                    <div class="reservation-details">
+                        <form action="{{ url_for('booking_status', reservation_id=reservation.id) }}" method="post" onsubmit="return confirm('Are you leaving?');">
+                            <button type="submit" class="btn btn-primary">Leave & Pay</button>
+                        </form>
                     </div>
                 </div>
             </div>
