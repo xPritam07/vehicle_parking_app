@@ -101,6 +101,7 @@
                                 <th> Parking Type </th>
                                 <th> Parking Timestamp </th>
                                 <th> Leaving Timestamp </th>
+                                <th> Cost </th>
                                 <th> Ratings </th>
                             </tr>
                         </thead>
@@ -114,6 +115,7 @@
                                     {{ reservation.parkingTimestamp }}
                                 </td>
                                 <td>{{ reservation.leavingTimestamp }}</td>
+                                <td> {{ reservation.parkingCost }} </td>
                                 <td>{{ reservation.ratings }}</td>
                                 </tr>
                             {% endfor %}
