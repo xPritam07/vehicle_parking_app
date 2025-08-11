@@ -15,15 +15,10 @@ A comprehensive Vehicle Parking App designed to streamline the process of managi
 
 ## Tech Stack
 
-- **Frontend:** [Specify framework, e.g., React, Flutter, etc.]
-- **Backend:** [Specify backend, e.g., Node.js, Django, Spring Boot, etc.]
-- **Database:** [Specify database, e.g., MongoDB, PostgreSQL, MySQL, etc.]
-- **Authentication:** [e.g., JWT, OAuth]
-- **Payment Integration:** [e.g., Stripe, Razorpay, PayPal]
+- **Frontend:** [HTML, CSS , Bootstrap]
+- **Backend:** [Flask]
+- **Database:** [SQLite]
 
-> _Note: Please update the above stack as per your project specifics._
-
-## Getting Started
 
 ### Prerequisites
 
