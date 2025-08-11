@@ -19,13 +19,6 @@ A comprehensive Vehicle Parking App designed to streamline the process of managi
 - **Backend:** [Flask]
 - **Database:** [SQLite]
 
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) / [Python](https://www.python.org/) / [Java](https://www.java.com/) (as per backend)
-- [Package manager] (npm, pip, Maven, etc.)
-- [Database system] (MongoDB, MySQL, etc.)
-
 ### Installation
 
 1. **Clone the repository**
